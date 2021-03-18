@@ -1,14 +1,23 @@
-# TIL
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Flouis-25%2FTIL&count_bg=%23228BE6&title_bg=%23555555&icon=&icon_color=%23228BE6&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-매일매일 배운것들 업로드하자
+# Today I Learned
+
+매일매일 배운것들 업로드하자!
 
 
 
-[마크다운 활용법](https://github.com/louis-25/TIL/blob/main/markdown.md)
+## 깃허브 특강
 
-[git기초](https://github.com/louis-25/TIL/blob/main/01_git.md)
+1. [마크다운 활용법](https://github.com/louis-25/TIL/blob/main/markdown.md)
 
-[github 원격저장소](https://github.com/louis-25/TIL/blob/main/02_github.md)
+2. [git기초](https://github.com/louis-25/TIL/blob/main/01_git.md)
+
+3. [github 원격저장소](https://github.com/louis-25/TIL/blob/main/02_github.md)
+
+4. [push error]()
+5. [branch]()
+6. [branch scenario]()
+7. [undoing]()
 
 
 
@@ -25,3 +34,5 @@
 2. [좋은 커밋메세지](https://meetup.toast.com/posts/106)
 3. [백엔드 개발](https://d2.naver.com/news/3435170)
 
+4. [자세한 깃허브 사용 매뉴얼](https://git-scm.com/book/ko/v2)
+5. [Git 입문자](https://backlog.com/git-tutorial/kr/intro/intro1_1.html)

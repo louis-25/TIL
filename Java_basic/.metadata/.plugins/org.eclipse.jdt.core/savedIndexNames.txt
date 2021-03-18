@@ -1,0 +1,8 @@
+INDEX VERSION 1.131+D:\Study\IT_Skilles\MultiCampus\TIL\Java_basic\.metadata\.plugins\org.eclipse.jdt.core
+4038756267.index
+1860047368.index
+4158079922.index
+2277357373.index
+433660574.index
+2161144612.index
+1773393425.index
