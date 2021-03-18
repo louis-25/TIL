@@ -8,16 +8,16 @@
 
 ## 깃허브 특강
 
-1. [마크다운 활용법](https://github.com/louis-25/TIL/blob/main/markdown.md)
+1. [마크다운 활용법](https://github.com/louis-25/TIL/tree/main/Document/markdown.md)
 
-2. [git기초](https://github.com/louis-25/TIL/blob/main/01_git.md)
+2. [git기초](https://github.com/louis-25/TIL/tree/main/Document/01_git.md)
 
-3. [github 원격저장소](https://github.com/louis-25/TIL/blob/main/02_github.md)
+3. [github 원격저장소](https://github.com/louis-25/TIL/blob/main/Document/03_gitignore.md)
 
-4. [push error]()
-5. [branch]()
-6. [branch scenario]()
-7. [undoing]()
+4. [push error](https://github.com/louis-25/TIL/blob/main/Document/04_pusherror.md)
+5. [branch](https://github.com/louis-25/TIL/blob/main/Document/05_branch.md)
+6. [branch scenario](https://github.com/louis-25/TIL/blob/main/Document/06_branch-scenario.md)
+7. [undoing](https://github.com/louis-25/TIL/blob/main/Document/07_undoing.md)
 
 
 
