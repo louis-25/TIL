@@ -72,7 +72,7 @@ Typora사용하여 마크업언어 작성시 아래와같이 설정해주자
 
 환경설정 -> 이미지 -> 아래와 같이 설정
 
-![image-20210316143405627](md-images/image-20210316143405627.png)
+![typora_img_setting](md-images/typora_img_setting.PNG)
 
 
 

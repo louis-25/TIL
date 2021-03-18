@@ -2,9 +2,9 @@
 
 # Today I Learned
 
-매일매일 배운것들 업로드하자!
+>  매일매일 배운것들 업로드하자!
 
-
+<br>
 
 ## 깃허브 특강
 
@@ -19,14 +19,14 @@
 6. [branch scenario](https://github.com/louis-25/TIL/blob/main/Document/06_branch-scenario.md)
 7. [undoing](https://github.com/louis-25/TIL/blob/main/Document/07_undoing.md)
 
-
+<br>
 
 ## 정적사이트 생성기
 
 1. Jekyll : 오래됐고 자료가 많음
 2. Gastby : 최근에 만들어짐
 
-
+<br>
 
 ## 유용한 사이트
 
