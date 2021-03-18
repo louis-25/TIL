@@ -10,40 +10,40 @@ public class HashSetTest {
 //		set.add(100);
 //		set.add(3.14);
 //		set.add("java");
-		Employee e1 = new Employee(400, "¹ÚºÎÀå", 88000.99);
+		Employee e1 = new Employee(400, "ë°•ë¶€ì¥", 88000.99);
 		set.add(e1);		
-		set.add(new Employee(500, "¹ÚºÎÀå", 88000.99));//»õ·Î¿î °´Ã¼»ı¼º (e1°ú °°Áö¾Ê´Ù(Áßº¹x) -> setÀ¸·Î Ãß°¡°¡´É)
+		set.add(new Employee(500, "ë°•ë¶€ì¥", 88000.99));//ìƒˆë¡œìš´ ê°ì²´ìƒì„± (e1ê³¼ ê°™ì§€ì•Šë‹¤(ì¤‘ë³µx) -> setìœ¼ë¡œ ì¶”ê°€ê°€ëŠ¥)
 		System.out.println(set.size());
 		
 		//for(int i=0; i< set.size(); i++) {
 			Iterator<Employee> it = set.iterator();
-			while(it.hasNext()) { // ´ÙÀ½ µ¥ÀÌÅÍ Á¸Àç ¿©ºÎ
-				Employee o = it.next(); //´ÙÀ½ µ¥ÀÌÅÍ Á¶È¸
+			while(it.hasNext()) { // ë‹¤ìŒ ë°ì´í„° ì¡´ì¬ ì—¬ë¶€
+				Employee o = it.next(); //ë‹¤ìŒ ë°ì´í„° ì¡°íšŒ
 				System.out.println(o.name);
 			}
 		//}
 			
 		System.out.println("========================");
 		HashSet<Integer> lotto = new HashSet<Integer>();
-		// 1-45 ³­¼ö »ı¼ºÇÏ¿© lotto ÀúÀåÇÏ¿©
-		// lotto Ãâ·ÂÇÏ¸é 6°³ Á¤¼ö ³ª¿Àµµ·Ï Ã³¸®(ÀúÀå - Á¶È¸ Ãâ·Â ¼ø¼­ ÀÏÄ¡ÇÏÁö ¾Ê¾Æµµ µÈ´Ù)
-		// 10ºĞ
+		// 1-45 ë‚œìˆ˜ ìƒì„±í•˜ì—¬ lotto ì €ì¥í•˜ì—¬
+		// lotto ì¶œë ¥í•˜ë©´ 6ê°œ ì •ìˆ˜ ë‚˜ì˜¤ë„ë¡ ì²˜ë¦¬(ì €ì¥ - ì¡°íšŒ ì¶œë ¥ ìˆœì„œ ì¼ì¹˜í•˜ì§€ ì•Šì•„ë„ ëœë‹¤)
+		// 10ë¶„
 		while(true) {
 			int num = (int)(Math.random()*45)+1;
 			lotto.add(num);
-			System.out.println("»ı¼ºµÈ ³­¼ö===>"+num);
+			System.out.println("ìƒì„±ëœ ë‚œìˆ˜===>"+num);
 			if(lotto.size() == 6) {break;}
 		}
 		/*Iterator<Integer> it2 = lotto.iterator();
-		while(it2.hasNext()) { //lotto¾È¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö?
+		while(it2.hasNext()) { //lottoì•ˆì— ë°ì´í„°ê°€ ìˆëŠ”ì§€?
 //			Integer o = it2.next();
-			System.out.println(it2.next()); //Ç×»ó 6°³
+			System.out.println(it2.next()); //í•­ìƒ 6ê°œ
 		}*/
-		for(Integer one : lotto) { //Iterator¸¦ »ç¿ëÇÏÁö ¾Ê°íµµ for¹®À¸·Î °´Ã¼¸¦ ¹İº¹ÇÒ ¼ö ÀÖ´Ù
+		for(Integer one : lotto) { //Iteratorë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šê³ ë„ forë¬¸ìœ¼ë¡œ ê°ì²´ë¥¼ ë°˜ë³µí•  ìˆ˜ ìˆë‹¤
 			System.out.println(one);
 		}
 //		int ar[] = new int[5];
-//		for( int one : ar ) { //ar¹è¿­ÀÇ ÇÏ³ª
+//		for( int one : ar ) { //arë°°ì—´ì˜ í•˜ë‚˜
 //			System.out.println(one);
 //		}
 //		

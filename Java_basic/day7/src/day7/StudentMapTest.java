@@ -12,10 +12,10 @@ class Student<T> {
 		this.eng = eng;
 		this.mat = mat;
 	}
-	//toString, equals ¿À¹ö¶óÀÌµù
+	//toString, equals ì˜¤ë²„ë¼ì´ë”©
 	@Override
 	public String toString() {
-		return "id:"+id+" name:"+name+" ÃÑÁ¡: "+(kor+eng+mat);
+		return "id:"+id+" name:"+name+" ì´ì : "+(kor+eng+mat);
 	}
 	@Override
 	public int hashCode() {
@@ -43,9 +43,9 @@ class Student<T> {
 public class StudentMapTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Student<Integer> s1 = new Student<Integer>(100, "±èÀÚ¹Ù", 50, 60, 70);
-		Student<String> s2 = new Student<String>("200", "¹ÚÁö¿ø", 50, 60, 70);		
-		System.out.println(s1); // id-name-ÃÑÁ¡
+		Student<Integer> s1 = new Student<Integer>(100, "ê¹€ìë°”", 50, 60, 70);
+		Student<String> s2 = new Student<String>("200", "ë°•ì§€ì›", 50, 60, 70);		
+		System.out.println(s1); // id-name-ì´ì 
 		System.out.println(s2);
 		
 		System.out.println(s1.equals(s2));

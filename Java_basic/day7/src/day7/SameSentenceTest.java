@@ -2,9 +2,9 @@ package day7;
 
 import java.util.ArrayList;
 
-//½Ç½À
+//ì‹¤ìŠµ
 
-// import ÀÚ¸®
+// import ìë¦¬
 class SameSentence{
 	String[] compare(ArrayList<String> list1, ArrayList<String> list2){
 		String[] result = new String[4];	
@@ -13,16 +13,16 @@ class SameSentence{
 		int len1 = list1.size();
 		int len2 = list2.size();
 		
-		//±¸ÇöÇÏ½Ã¿À.
-		/* list1, list2 µ¥ÀÌÅÍ °¹¼ö ºñ±³
-		 * ´Ù¸£¸é  "ÃÖ¼Ò (ÀÛÀºÂÊÀÇ °¹¼ö)3°³, ÃÖ´ë (Å«ÂÊ °¹¼ö)4°³ÀÇ ¸®½ºÆ®ÀÔ´Ï´Ù"  ¸¦  result   ¹è¿­¿¡ ³Ö¾î¼­ ¸®ÅÏ
-		 * °°À¸¸é 2°³ ArrayList  °¢ ÀÎµ¦½º¸¶´Ù ¹®ÀÚ¿­ ³»¿ë ºñ±³ÇÏ°í °°À» ¹®ÀÚ¿­ ³»¿ë °°À¸¸é  result  ¹è¿­¿¡ ³Ö¾î¼­ ¸®ÅÏ
+		//êµ¬í˜„í•˜ì‹œì˜¤.
+		/* list1, list2 ë°ì´í„° ê°¯ìˆ˜ ë¹„êµ
+		 * ë‹¤ë¥´ë©´  "ìµœì†Œ (ì‘ì€ìª½ì˜ ê°¯ìˆ˜)3ê°œ, ìµœëŒ€ (í°ìª½ ê°¯ìˆ˜)4ê°œì˜ ë¦¬ìŠ¤íŠ¸ì…ë‹ˆë‹¤"  ë¥¼  result   ë°°ì—´ì— ë„£ì–´ì„œ ë¦¬í„´
+		 * ê°™ìœ¼ë©´ 2ê°œ ArrayList  ê° ì¸ë±ìŠ¤ë§ˆë‹¤ ë¬¸ìì—´ ë‚´ìš© ë¹„êµí•˜ê³  ê°™ì„ ë¬¸ìì—´ ë‚´ìš© ê°™ìœ¼ë©´  result  ë°°ì—´ì— ë„£ì–´ì„œ ë¦¬í„´
 		 * */
 		if(len1 > len2) {
-//			result[0] = "ÃÖ¼Ò" + len2 + " °³, ÃÖ´ë" + len1 +" °³ÀÇ ¸®½ºÆ®ÀÔ´Ï´Ù.";
-			resultList.add("ÃÖ¼Ò" + len2 + " °³, ÃÖ´ë" + len1 +" °³ÀÇ ¸®½ºÆ®ÀÔ´Ï´Ù.");
+//			result[0] = "ìµœì†Œ" + len2 + " ê°œ, ìµœëŒ€" + len1 +" ê°œì˜ ë¦¬ìŠ¤íŠ¸ì…ë‹ˆë‹¤.";
+			resultList.add("ìµœì†Œ" + len2 + " ê°œ, ìµœëŒ€" + len1 +" ê°œì˜ ë¦¬ìŠ¤íŠ¸ì…ë‹ˆë‹¤.");
 		}else if (len1 < len2) {
-			resultList.add("ÃÖ¼Ò" + len1 + " °³, ÃÖ´ë" + len2 +" °³ÀÇ ¸®½ºÆ®ÀÔ´Ï´Ù.");
+			resultList.add("ìµœì†Œ" + len1 + " ê°œ, ìµœëŒ€" + len2 +" ê°œì˜ ë¦¬ìŠ¤íŠ¸ì…ë‹ˆë‹¤.");
 		}else { // len1 == len2
 			for(int i = 0; i < len1; i++) {
 				if(list1.get(i).equals(list2.get(i))) {
@@ -32,39 +32,39 @@ class SameSentence{
 			}
 		}		
 				
-		result = new String[resultList.size()]; //resultListÀÇ Å©±â¸¸Å­ ¹è¿­À» ¸¸µç´Ù
-		//ArrayList µ¥ÀÌÅÍ¸¦ ¹è¿­ º¯°æ ¸Ş¼Òµå
-		result = resultList.toArray(result); //resultListÀÇ µ¥ÀÌÅÍ¸¦ result¹è¿­·Î ¸®ÅÏ
+		result = new String[resultList.size()]; //resultListì˜ í¬ê¸°ë§Œí¼ ë°°ì—´ì„ ë§Œë“ ë‹¤
+		//ArrayList ë°ì´í„°ë¥¼ ë°°ì—´ ë³€ê²½ ë©”ì†Œë“œ
+		result = resultList.toArray(result); //resultListì˜ ë°ì´í„°ë¥¼ resultë°°ì—´ë¡œ ë¦¬í„´
 		return result;//
 	}
 }
 public class SameSentenceTest {
 public static void main(String[] args) {
 	ArrayList<String> list1 = new ArrayList<String>();
-	list1.add("ÀÚ¹Ù´Â °´Ã¼ÁöÇâ ¾ğ¾îÀÔ´Ï´Ù");
-	list1.add("¿ì¸®´Â ¸ÖÆ¼Ä·ÆÛ½º¿¡¼­ ÀÚ¹Ù¸¦ ¹è¿ì´Â ÁßÀÔ´Ï´Ù");
-	list1.add("¿À´ÃÀº ÄÃ·º¼Ç ÇÁ·¹ÀÓ¿öÅ©¸¦ ¹è¿ìÁÒ! ");
-	list1.add("¶÷´Ù, ÀÔÃâ·Â°ú ³×Æ®¿öÅ©µµ ¹è¿ï ¿¹Á¤ÀÔ´Ï´Ù ");
+	list1.add("ìë°”ëŠ” ê°ì²´ì§€í–¥ ì–¸ì–´ì…ë‹ˆë‹¤");
+	list1.add("ìš°ë¦¬ëŠ” ë©€í‹°ìº í¼ìŠ¤ì—ì„œ ìë°”ë¥¼ ë°°ìš°ëŠ” ì¤‘ì…ë‹ˆë‹¤");
+	list1.add("ì˜¤ëŠ˜ì€ ì»¬ë ‰ì…˜ í”„ë ˆì„ì›Œí¬ë¥¼ ë°°ìš°ì£ ! ");
+	list1.add("ëŒë‹¤, ì…ì¶œë ¥ê³¼ ë„¤íŠ¸ì›Œí¬ë„ ë°°ìš¸ ì˜ˆì •ì…ë‹ˆë‹¤ ");
 	
 	ArrayList<String> list2 = new ArrayList<String>();
-	list2.add("ÀÚ¹Ù´Â °´Ã¼ÁöÇâ ¾ğ¾îÀÔ´Ï´Ù");
-	list2.add("¿ì¸®´Â multicampus¿¡¼­ ÀÚ¹Ù¸¦ ¹è¿ì´Â ÁßÀÔ´Ï´Ù");
-	list2.add("¿À´ÃÀº ÄÃ·º¼Ç ÇÁ·¹ÀÓ¿öÅ©¸¦ ¹è¿ìÁÒ! ");
-	list2.add("ÀÔÃâ·Â°ú ³×Æ®¿öÅ©µµ ¹è¿ï ¿¹Á¤ÀÔ´Ï´Ù ");
+	list2.add("ìë°”ëŠ” ê°ì²´ì§€í–¥ ì–¸ì–´ì…ë‹ˆë‹¤");
+	list2.add("ìš°ë¦¬ëŠ” multicampusì—ì„œ ìë°”ë¥¼ ë°°ìš°ëŠ” ì¤‘ì…ë‹ˆë‹¤");
+	list2.add("ì˜¤ëŠ˜ì€ ì»¬ë ‰ì…˜ í”„ë ˆì„ì›Œí¬ë¥¼ ë°°ìš°ì£ ! ");
+	list2.add("ì…ì¶œë ¥ê³¼ ë„¤íŠ¸ì›Œí¬ë„ ë°°ìš¸ ì˜ˆì •ì…ë‹ˆë‹¤ ");
 	
 	ArrayList<String> list3 = new ArrayList<String>();
-	list3.add("ÀÚ¹Ù´Â °´Ã¼ÁöÇâ ¾ğ¾îÀÔ´Ï´Ù");
-	list3.add("¿ì¸®´Â multi¿¡¼­ ÀÚ¹Ù¸¦ ¹è¿ì´Â ÁßÀÔ´Ï´Ù");
-	list3.add("¿À´ÃÀº ÄÃ·º¼Ç ÇÁ·¹ÀÓ¿öÅ©¸¦ ¹è¿ìÁÒ! ");
+	list3.add("ìë°”ëŠ” ê°ì²´ì§€í–¥ ì–¸ì–´ì…ë‹ˆë‹¤");
+	list3.add("ìš°ë¦¬ëŠ” multiì—ì„œ ìë°”ë¥¼ ë°°ìš°ëŠ” ì¤‘ì…ë‹ˆë‹¤");
+	list3.add("ì˜¤ëŠ˜ì€ ì»¬ë ‰ì…˜ í”„ë ˆì„ì›Œí¬ë¥¼ ë°°ìš°ì£ ! ");
 	
 	SameSentence ss = new SameSentence();
-	String[] a = ss.compare(list1, list2);//list1, list2¿¡¼­ °°Àº ³»¿ë¸¸ Ãâ·Â
+	String[] a = ss.compare(list1, list2);//list1, list2ì—ì„œ ê°™ì€ ë‚´ìš©ë§Œ ì¶œë ¥
 	for(String one: a) {
 //		if(one != null) System.out.println(one);
 		System.out.println(one);
 	}
 	
-	String[] b = ss.compare(list1, list3);//ÃÖ¼Ò 3°³, ÃÖ´ë 4°³ÀÇ ¸®½ºÆ®ÀÔ´Ï´Ù Ãâ·Â	
+	String[] b = ss.compare(list1, list3);//ìµœì†Œ 3ê°œ, ìµœëŒ€ 4ê°œì˜ ë¦¬ìŠ¤íŠ¸ì…ë‹ˆë‹¤ ì¶œë ¥	
 	for(String one: b) {
 //		if(one != null) System.out.println(one);
 		System.out.println(one);

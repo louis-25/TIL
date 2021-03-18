@@ -22,52 +22,52 @@ class Employee /*extends Object*/{
 public class ArrayListTest {
 
 	public static void main(String[] args) {		
-		//ArrayList Á¶È¸ ÀÚÁÖÇÏ¸é È¿À²Àû
-		//LinkedList ÀúÀå ¼öÁ¤ »èÁ¦ ÀÚÁÖÇÏ¸é È¿À²Àû
+		//ArrayList ì¡°íšŒ ìì£¼í•˜ë©´ íš¨ìœ¨ì 
+		//LinkedList ì €ì¥ ìˆ˜ì • ì‚­ì œ ìì£¼í•˜ë©´ íš¨ìœ¨ì 
 		
-		//ArrayList = ¿©·¯ Å¸ÀÔ µ¥ÀÌÅÍ ÀúÀå °¡´É
-		//ArrayList<Å¸ÀÔ> = µ¿ÀÏÅ¸ÀÔ µ¥ÀÌÅÍ¸¸ ÀúÀåÇÏµÇ °¹¼ö À¯µ¿ÀûÀ¸·Î ¹Ù²¸¾ßÇÒ¶§
-		/*1> ÄÄÆÄÀÏ·¯ ÄÄÆÄÀÏ½ÃÁ¡ Å¸ÀÔ Ã¼Å©
-		 *2> Çüº¯È¯ ÇÊ¿ä¾ø´Ù
-		 *3> Å¸ÀÔ Á¤Àû À¯Áö
-		 *4> Å¸ÀÔ ÁöÁ¤ x --> add(Object o) / get(0) --> Object
-		 *5> Å¸ÀÔ ÁöÁ¤ o --> add(Å¸ÀÔ o) / get(0) --> Å¸ÀÔ
+		//ArrayList = ì—¬ëŸ¬ íƒ€ì… ë°ì´í„° ì €ì¥ ê°€ëŠ¥
+		//ArrayList<íƒ€ì…> = ë™ì¼íƒ€ì… ë°ì´í„°ë§Œ ì €ì¥í•˜ë˜ ê°¯ìˆ˜ ìœ ë™ì ìœ¼ë¡œ ë°”ê»´ì•¼í• ë•Œ
+		/*1> ì»´íŒŒì¼ëŸ¬ ì»´íŒŒì¼ì‹œì  íƒ€ì… ì²´í¬
+		 *2> í˜•ë³€í™˜ í•„ìš”ì—†ë‹¤
+		 *3> íƒ€ì… ì •ì  ìœ ì§€
+		 *4> íƒ€ì… ì§€ì • x --> add(Object o) / get(0) --> Object
+		 *5> íƒ€ì… ì§€ì • o --> add(íƒ€ì… o) / get(0) --> íƒ€ì…
 		 * */
 		//ArrayList list = new ArrayList(5);
 		ArrayList<Employee> list = new ArrayList<Employee>(5);
-//		list.add(100); //new Integer(100)À¸·Î ÀÚµ¿ Çüº¯È¯
+//		list.add(100); //new Integer(100)ìœ¼ë¡œ ìë™ í˜•ë³€í™˜
 //		list.add(new Integer(200));
 //		list.add(2.55);
 //		list.add(new Double(32.14));
 //		list.add(300);
 //		list.add(9.99);
-//		list.add("ÀÚ¹ÙÇÁ·Î±×·¥"); //6¹øÀÎµ¦½º ÀúÀå
-//		list.add(0, "º¯°æ"); //0¹ø ÀÎµ¦½º¿¡ º¯°æ ÀúÀå
-//		list.set(0, "º¯°æÈ®ÀÎ"); //0¹ø ÀÎµ¦½º ÀúÀå µ¥ÀÌÅÍ¸¦ "º¯°æÈ®ÀÎ" ¼öÁ¤
-//		list.remove(1); //1¹ø ÀÎµ¦½º »èÁ¦
+//		list.add("ìë°”í”„ë¡œê·¸ë¨"); //6ë²ˆì¸ë±ìŠ¤ ì €ì¥
+//		list.add(0, "ë³€ê²½"); //0ë²ˆ ì¸ë±ìŠ¤ì— ë³€ê²½ ì €ì¥
+//		list.set(0, "ë³€ê²½í™•ì¸"); //0ë²ˆ ì¸ë±ìŠ¤ ì €ì¥ ë°ì´í„°ë¥¼ "ë³€ê²½í™•ì¸" ìˆ˜ì •
+//		list.remove(1); //1ë²ˆ ì¸ë±ìŠ¤ ì‚­ì œ
 		
-		Employee e1 = new Employee(100, "ÀÌ»ç¿ø", 56000.55);
-		Employee e2 = new Employee(200, "ÃÖ´ë¸®", 66000.55);
-		Employee e3 = new Employee(300, "¹Ú°úÀå", 76000.55);
-		list.add(e1); //toStringÀÌ ¿À¹ö¶óÀÌµù µÅÀÖÁö¾Ê´Ù
+		Employee e1 = new Employee(100, "ì´ì‚¬ì›", 56000.55);
+		Employee e2 = new Employee(200, "ìµœëŒ€ë¦¬", 66000.55);
+		Employee e3 = new Employee(300, "ë°•ê³¼ì¥", 76000.55);
+		list.add(e1); //toStringì´ ì˜¤ë²„ë¼ì´ë”© ë¼ìˆì§€ì•Šë‹¤
 		list.add(e2);
 		list.add(e3);
 		System.out.println(list.size());
 		
-		//list ³»¿¡ ¸ÖÆ¼Ä·ÆÛ½º ¹®ÀÚ¿­ »èÁ¦
-		if(list.contains("¸ÖÆ¼Ä·ÆÛ½º")) {
-			System.out.println(list.indexOf("¸ÖÆ¼Ä·ÆÛ½º"));
-			list.remove("¸ÖÆ¼Ä·ÆÛ½º");
+		//list ë‚´ì— ë©€í‹°ìº í¼ìŠ¤ ë¬¸ìì—´ ì‚­ì œ
+		if(list.contains("ë©€í‹°ìº í¼ìŠ¤")) {
+			System.out.println(list.indexOf("ë©€í‹°ìº í¼ìŠ¤"));
+			list.remove("ë©€í‹°ìº í¼ìŠ¤");
 		}		
 		for(int i = 0; i< list.size(); i++) {
 			Employee o = list.get(i);
 			//day7.Employee@15db
-			System.out.println(i+" ¹ø ÀÎµ¦½º="+ o/*.toString()*/);
-			//¸¸¾à Á¶È¸ µ¥ÀÌÅÍ°¡ Employee °´Ã¼ÀÇ name º¯¼ö Ãâ·Â
+			System.out.println(i+" ë²ˆ ì¸ë±ìŠ¤="+ o/*.toString()*/);
+			//ë§Œì•½ ì¡°íšŒ ë°ì´í„°ê°€ Employee ê°ì²´ì˜ name ë³€ìˆ˜ ì¶œë ¥
 			//Integer, Double, String, Employee
 			
-			if(o instanceof Employee) { // o°´Ã¼°¡ EmployeeÅ¸ÀÔÀ¸·Î ¸¸µé¾îÁ³´Â°¡?
-				System.out.println(((Employee)o).name); //Employee°´Ã¼ Å¸ÀÔÀ¸·Î ¸í½ÃÀû Çüº¯È¯
+			if(o instanceof Employee) { // oê°ì²´ê°€ Employeeíƒ€ì…ìœ¼ë¡œ ë§Œë“¤ì–´ì¡ŒëŠ”ê°€?
+				System.out.println(((Employee)o).name); //Employeeê°ì²´ íƒ€ì…ìœ¼ë¡œ ëª…ì‹œì  í˜•ë³€í™˜
 			}
 		}
 		

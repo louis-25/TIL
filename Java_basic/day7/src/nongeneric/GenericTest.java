@@ -1,17 +1,17 @@
 package nongeneric;
 
 class Apple {
-	String origin = "´ë±¸";
+	String origin = "ëŒ€êµ¬";
 }
 class Paper {
 	String size = "A4";
 }
 
-//Box<Apple°ú ÇÏÀ§Å¬·¡½º, Paper>
-class Box<T, K>{// ÄÄÆÄÀÏ ½ÃÁ¡Àü´Ş
+//Box<Appleê³¼ í•˜ìœ„í´ë˜ìŠ¤, Paper>
+class Box<T, K>{// ì»´íŒŒì¼ ì‹œì ì „ë‹¬
 	T t1;
 	K k1;
-	String name = "»óÀÚ";
+	String name = "ìƒì";
 	Box(T t1, K k1) {
 		this.t1 = t1;
 		this.k1 = k1;
@@ -31,9 +31,9 @@ class Box<T, K>{// ÄÄÆÄÀÏ ½ÃÁ¡Àü´Ş
 	
 	
 }
-class BoxManager { // Å¬·¡½º´Â Á¦³×¸¯ÀÌ ¾Æ´Ï´Ù
+class BoxManager { // í´ë˜ìŠ¤ëŠ” ì œë„¤ë¦­ì´ ì•„ë‹ˆë‹¤
 	
-	//Á¦³×¸¯ ¸Ş¼Òµå
+	//ì œë„¤ë¦­ ë©”ì†Œë“œ
 	public <P1, P2> Box<P1, P2> test(P1 a, P2 p) {
 		Box<P1, P2> box2 = new Box<P1, P2>(a, p);
 		return box2;
@@ -45,9 +45,9 @@ public class GenericTest {
 		// TODO Auto-generated method stub
 		Apple a = new Apple();
 		Paper p = new Paper();
-		//<Apple> <Paper> Á¦³×¸¯ Å¸ÀÔ»ç¿ë
+		//<Apple> <Paper> ì œë„¤ë¦­ íƒ€ì…ì‚¬ìš©
 		Box<Apple, Paper> box = new Box<Apple, Paper>(a, p);		
-		//Á¦³×¸¯ Å¸ÀÔÀ» »ç¿ëÇÏ¸é ¾Æ·¡¿Í°°ÀÌ ÄÚµå°¡ °£·«ÇØÁø´Ù
+		//ì œë„¤ë¦­ íƒ€ì…ì„ ì‚¬ìš©í•˜ë©´ ì•„ë˜ì™€ê°™ì´ ì½”ë“œê°€ ê°„ëµí•´ì§„ë‹¤
 		System.out.println(box.getT1().origin);
 		System.out.println(box.getK1().size);
 		
@@ -56,11 +56,11 @@ public class GenericTest {
 		System.out.println(box2.getT1().origin);
 		System.out.println(box2.getK1().size);
 		
-		//Á¦³×¸¯ Å¸ÀÔÀ» »ç¿ëÇÏÁö ¾Ê´Â°æ¿ì
-//		if(appleBox.getO() instanceof Apple) { //appleBox´Â Apple°´Ã¼ÀÎ°¡?
+		//ì œë„¤ë¦­ íƒ€ì…ì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ê²½ìš°
+//		if(appleBox.getO() instanceof Apple) { //appleBoxëŠ” Appleê°ì²´ì¸ê°€?
 //			System.out.println(((Apple)(appleBox.getO())).origin);
 //		}
-//		if(paperBox.getO() instanceof Paper) { //paperBox´Â Paper°´Ã¼ÀÎ°¡?
+//		if(paperBox.getO() instanceof Paper) { //paperBoxëŠ” Paperê°ì²´ì¸ê°€?
 //			System.out.println(((Paper)(paperBox.getO())).size);
 //		}
 	}

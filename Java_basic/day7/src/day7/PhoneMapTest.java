@@ -6,7 +6,7 @@ import java.util.Set;
 public class PhoneMapTest {
 
 	public static void main(String[] args) {
-//		s1¹è¿­°ú s2¹è¿­Àº °°Àº ³»¿ëÀÌ´Ù
+//		s1ë°°ì—´ê³¼ s2ë°°ì—´ì€ ê°™ì€ ë‚´ìš©ì´ë‹¤
 //		String s1[] = new String[3];
 //		s1[0] = "010-1234-5678";
 //		s1[1] = "02-3429-0987";
@@ -19,35 +19,35 @@ public class PhoneMapTest {
 				new HashMap<String, String[]>();
 				
 		
-		phone.put("ÃÊµîÄ£±¸", new String[]{"010-1234-5678", "02-3429-0987", "ÃÊµîÄ£±¸@multicampus.com"});
-		phone.put("ÃÊµîÄ£±¸", new String[]{"010-1223-5678", "02-3429-0987", "°íµîÄ£±¸@multicampus.com"});
-		phone.put("È¸»çµ¿±â", new String[]{"010-1234-5678", "02-2432-0987", "È¸»çµ¿±â@multicampus.com"});
-		phone.put("È¸»ç»ó»ç", new String[]{"010-1234-5678", "02-3559-0987", "È¸»ç»ó»ç@multicampus.com"});
+		phone.put("ì´ˆë“±ì¹œêµ¬", new String[]{"010-1234-5678", "02-3429-0987", "ì´ˆë“±ì¹œêµ¬@multicampus.com"});
+		phone.put("ì´ˆë“±ì¹œêµ¬", new String[]{"010-1223-5678", "02-3429-0987", "ê³ ë“±ì¹œêµ¬@multicampus.com"});
+		phone.put("íšŒì‚¬ë™ê¸°", new String[]{"010-1234-5678", "02-2432-0987", "íšŒì‚¬ë™ê¸°@multicampus.com"});
+		phone.put("íšŒì‚¬ìƒì‚¬", new String[]{"010-1234-5678", "02-3559-0987", "íšŒì‚¬ìƒì‚¬@multicampus.com"});
 		
-		System.out.println("ÃÑ¿¬¶ôÃ³°¹¼ö="+phone.size());
+		System.out.println("ì´ì—°ë½ì²˜ê°¯ìˆ˜="+phone.size());
 		
-		//È¸»çµ¿±âÀÇ ¿¬¶ôÃ³ Á¤º¸ Á¶È¸
-		String phonelist[] = phone.get("È¸»çµ¿±â");
+		//íšŒì‚¬ë™ê¸°ì˜ ì—°ë½ì²˜ ì •ë³´ ì¡°íšŒ
+		String phonelist[] = phone.get("íšŒì‚¬ë™ê¸°");
 		for(String one : phonelist) {
 			System.out.println(one);
 		}
 		
-		// »çÀå´ÔÀÇ ¿¬¶ôÃ³ Á¤º¸Á¶È¸
-		if(phone.containsKey("»çÀå´Ô")) { // phone Map¿¡ »çÀå´Ôkey°ªÀÌ ÀÖ´ÂÁö? 
-			String phonelist2[] = phone.get("»çÀå´Ô");
+		// ì‚¬ì¥ë‹˜ì˜ ì—°ë½ì²˜ ì •ë³´ì¡°íšŒ
+		if(phone.containsKey("ì‚¬ì¥ë‹˜")) { // phone Mapì— ì‚¬ì¥ë‹˜keyê°’ì´ ìˆëŠ”ì§€? 
+			String phonelist2[] = phone.get("ì‚¬ì¥ë‹˜");
 			for(String one : phonelist) {
 				System.out.println(one);
 			}
 		}
 		else {
-			System.out.println("»çÀå´ÔÀº ¿¬¶ôÃ³¿¡ ¾ø¾î¿ä.");
+			System.out.println("ì‚¬ì¥ë‹˜ì€ ì—°ë½ì²˜ì— ì—†ì–´ìš”.");
 		}
 		
 		System.out.println();
-		//³» ¿¬¶ôÃ³ ¸ğµç Á¤º¸ Á¶È¸
-		Set<String> keys = phone.keySet(); //key¸¦ setÀÇ ÇüÅÂ·Î º¸¿©ÁØ´Ù
+		//ë‚´ ì—°ë½ì²˜ ëª¨ë“  ì •ë³´ ì¡°íšŒ
+		Set<String> keys = phone.keySet(); //keyë¥¼ setì˜ í˜•íƒœë¡œ ë³´ì—¬ì¤€ë‹¤
 		for(String key : keys) {
-			phone.get(key + " : "); // key°ªÀ» Á¶È¸ÇÏ¿© value°ªÀ» ¹İÈ¯ÇÑ´Ù
+			phone.get(key + " : "); // keyê°’ì„ ì¡°íšŒí•˜ì—¬ valueê°’ì„ ë°˜í™˜í•œë‹¤
 			String phonelist1[] = phone.get(key);
 			for(String one: phonelist1) {
 				System.out.print(one + " | ");
@@ -60,7 +60,7 @@ public class PhoneMapTest {
 }
 
 /*
- * "work dir" = ³ªÀÇ ÀÛ¾÷µğ·ºÅä¸®
+ * "work dir" = ë‚˜ì˜ ì‘ì—…ë””ë ‰í† ë¦¬
  * "os" = windows10
  * key = value
  * */

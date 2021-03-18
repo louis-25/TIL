@@ -1,7 +1,7 @@
 package generic2;
 
 class Fruit {
-	String name = "°úÀÏ";
+	String name = "ê³¼ì¼";
 }
 
 class Apple extends Fruit {
@@ -24,8 +24,8 @@ class Paper {
 	String size = "A4";
 }
 
-class Box<T extends Fruit> { // Á¦ÇÑ Á¤ÀÇ
-	//¸â¹öº¯¼ö / »ı¼ºÀÚ / ¸Ş¼Òµå ¼ø¼­ ¾ø´Ù
+class Box<T extends Fruit> { // ì œí•œ ì •ì˜
+	//ë©¤ë²„ë³€ìˆ˜ / ìƒì„±ì / ë©”ì†Œë“œ ìˆœì„œ ì—†ë‹¤
 	T o;
 	Box(T o) {
 		this.o = o;
@@ -39,7 +39,7 @@ class Box<T extends Fruit> { // Á¦ÇÑ Á¤ÀÇ
 }
 
 class BoxManager {
-	public void test(Box<? extends Fruit> b) { //Á¦ÇÑ Å¸ÀÔ Àü´Ş
+	public void test(Box<? extends Fruit> b) { //ì œí•œ íƒ€ì… ì „ë‹¬
 		System.out.println(b.getO().name);
 	}
 }
@@ -48,8 +48,8 @@ public class GenericTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Fruit f = new Fruit();
-		Apple a = new Apple("»ç°ú", "´ë±¸");
-		Orange o = new Orange("¿À·»Áö", "¹Ì±¹");
+		Apple a = new Apple("ì‚¬ê³¼", "ëŒ€êµ¬");
+		Orange o = new Orange("ì˜¤ë Œì§€", "ë¯¸êµ­");
 		Paper p = new Paper();
 		Box<Apple> box1 = new Box<Apple>(a);
 		Box<Orange> box2 = new Box<Orange>(o);
@@ -60,7 +60,7 @@ public class GenericTest {
 		m.test(box1);
 		m.test(box2);
 		m.test(box3);
-//		m.test(new Box<Paper>)(p)); ºÒ°¡´É
+//		m.test(new Box<Paper>)(p)); ë¶ˆê°€ëŠ¥
 		
 	}
 
