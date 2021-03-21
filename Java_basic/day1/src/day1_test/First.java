@@ -4,7 +4,9 @@ public class First {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("처음 출력하는 프로그램");
+		String s = "program";
+
+		System.out.println(String.format("%-10s", s));
 	}
 
 }

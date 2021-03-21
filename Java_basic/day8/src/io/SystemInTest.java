@@ -25,7 +25,7 @@ public class SystemInTest {
 			//cnt --> 입력개수
 			int cnt = is.read(b); // 키보드 1바이트 입력 b 배열 저장
 			System.out.println("cnt:"+cnt);
-			String inputString = new String(b, 0, cnt); //1문자 2바이트
+			String inputString = new String(b); //1문자 2바이트
 			
 			System.out.println(inputString);							
 		}catch(IOException e) {
