@@ -29,7 +29,8 @@ public class MenuTest {
 				p.process();
 			}else if(menu == 2) {
 				ViewProcess view = new ViewProcess();
-				view.process();			            
+				ArrayList<EmployeeVo> list = view.process();
+				for (EmployeeVo vo : list) System.out.println(vo);
 			}else if(menu == 3) {
 				System.out.println("사원정보수정을 선택하셨습니다.");
 			//수정 사번 입력 : 200

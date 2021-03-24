@@ -1,5 +1,7 @@
 package template;
 
+import java.util.ArrayList;
+
 public class Controller {
 	//private접근자를 붙임으로 인해 외부에서 Controller를 쉽게생성X
 	//현재 클래스에서는 사용가능
@@ -18,10 +20,11 @@ public class Controller {
 		dao.insert(e); //
 	}
 	
-	void getAll() {
+	ArrayList<EmployeeVo> getAll() {
 		//EmployeeDAO객체에서 
-		EmployeeDAO dao = new EmployeeDAO();
-		dao.getAll();
+		EmployeeDAO dao = new EmployeeDAO();		
+		ArrayList<EmployeeVo> list = dao.getAll();
+		return list;
 	}
 }
 
