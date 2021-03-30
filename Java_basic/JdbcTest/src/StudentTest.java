@@ -12,7 +12,7 @@ public class StudentTest {
 		dto.setAddr("제주");
 		dto.setTel("010-3333-3333");
 		
-//		dao.insertStudent(dto);
+		dao.insertStudent(dto);
 		dao.printAllStudents();
 	}
 

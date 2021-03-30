@@ -4,8 +4,6 @@ public class StudentDTO {
 	String name, det, addr, tel;
 	
 	
-	
-	
 	public int getNo() {
 		return No;
 	}

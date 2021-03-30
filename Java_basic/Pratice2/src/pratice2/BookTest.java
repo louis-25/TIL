@@ -1,7 +1,5 @@
 package pratice2;
 
-import test.Book;
-
 class Book {
 	private String isbn;
 	private String title;

@@ -13,11 +13,9 @@ public class StudentDAO {
 	public void insertStudent(StudentDTO StudentDTO) {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "hr", "hr");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "jdbc", "jdbc");
 			System.out.println("db연결성공");
 			
-//			String sql = "insert into Student values("+StudentDTO.getNo()+","+StudentDTO.getName()+","
-//							+StudentDTO.getDet()+","+StudentDTO.getAddr()+","+StudentDTO.getTel()+")";
 			String sql = "insert into Student values(?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);			
 			
@@ -46,23 +44,24 @@ public class StudentDAO {
 	}
 	public void printAllStudents() {
 		try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "hr", "hr");
-		System.out.println("db연결성공");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "jdbc", "jdbc");
+			System.out.println("db연결성공");
 		
-		String sql ="select * from Student";
-		//db 전송
-		st = conn.createStatement();
-		// 실행
-		rs = st.executeQuery(sql);
-		int No;
-		String name, det, addr, tel;
-		while(rs.next()) {
-			No = rs.getInt("No");
-			name = rs.getString("name");
-			det = rs.getString("det");
-			addr = rs.getString("addr");
-			tel = rs.getString("tel");			
+			String sql ="select * from Student";
+			//db 전송
+			st = conn.createStatement();
+			// 실행
+			rs = st.executeQuery(sql);
+			
+			int No;
+			String name, det, addr, tel;
+			while(rs.next()) {
+				No = rs.getInt("No");
+				name = rs.getString("name");
+				det = rs.getString("det");
+				addr = rs.getString("addr");
+				tel = rs.getString("tel");			
 			
 			System.out.println(No+" | "+name+" | "+det+" | "+addr+" | "+tel);
 		}
@@ -73,7 +72,9 @@ public class StudentDAO {
 			System.out.println("DB연결정보 확인하세요");
 			e.printStackTrace();
 		} finally {
-			try {
+			try {									
+			st.close();
+			ps.close();
 			rs.close();
 			conn.close();
 			System.out.println("db연결해제성공");
