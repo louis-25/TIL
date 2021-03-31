@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 id="here"> k digital 과정</h1>
+<h3> web client 과목</h3>
+<h5> html 태그</h5>
+<p> 현재 우리는html 태그 가운데 글자크기와 관련된 태그를 출력중입니다</p>
+<hr>
+<!-- 절대경로 -->
+<a href=https://www.google.com>구글</a><br>
+<a href=http://localhost:9090/html/first.html>first.html</a><br> <!-- 다른페이지로 이동 -->
+<!-- 상대경로 -->
+<a href= "first.html">first.html</a><br> <!-- 현재서버의 현재프로젝트의 first.html이동 -->
+<a href= "/프로젝트명/first.html">first.html</a><br> <!-- 현재서버의 다른프로젝트의 first.html 이동 -->
+<!-- first.html 으로 써줘도 상대경로로 인식돼 위와같이 동작한다 -->
+
+<a href= "#here">현재파일의 첫부분 이동</a><br>
+
+<h1> 목록 태그 </h1>
+<ol type="a">
+	<li>list1</li>
+	<li>list2</li>
+	<li>list3</li>
+	<li>list4</li>
+</ol>
+<ul type="square">
+	<li>list5</li>
+	<li>list6</li>
+	<li>list7</li>
+	<li>list8</li>
+</ul>
+
+<table border="3">
+<tr><th>사번</th><th>이름</th><th>급여</th><th>입사일</th></tr>
+<tr><td>1행 1열</td><td>1행 2열</td><td>1행 3열</td><td>1행 4열</td></tr>
+<tr><td>2행 1열</td><td>2행 2열</td><td>2행 3열</td><td>2행 4열</td></tr>
+<tr><td>3행 1열</td><td>3행 2열</td><td>3행 3열</td><td>3행 4열</td></tr>
+</table>
+
+<table border="3">
+<caption>로그인 테이블</caption>
+<tr><td>로그인아이디 입력</td><td>xxxxxx</td><td>로그인버튼</td></tr>
+<tr><td>암호입력</td><td>xxxxx</td></tr>
+
+<table border="3">
+<caption>로그인 테이블</caption>
+<tr><td>로그인아이디 입력</td><td>xxxxxx</td><td rowspan="2">로그인버튼</td></tr>
+<tr><td>암호입력</td><td>xxxxx</td></tr>
+
+<table border="3">
+<caption>로그인 테이블</caption>
+<tr><td>로그인아이디 입력</td><td>xxxxxx</td><td>로그인버튼</td></tr>
+<tr><td colspan="2">암호입력</td><td>xxxxx</td></tr>
+</table>
+</body>
+</html>
