@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	background-color: aqua;
+}
+h1 {
+	border: solid 2px blue;
+	width: 500px;
+	text-align: center;
+	margin: auto;
+	box-shadow:-2px -2px 2px red; /*x y 음영번지는크기 색상*/
+	border-radius: 5px;
+	text-shadow: 5px 5px 5px green;
+	color: green;
+}
+
+table {
+	border:2px solid pink;
+	margin: auto;
+	text-align: center;
+	border-collapse: collapse; /*선이 2개로 나눠진것을 1개로 합쳐서 보여줌*/
+}
+
+tr:first-child {
+	background-color: silver;
+}
+tr a { 
+text-decoration: none; /*a태그 밑줄제거*/
+}
+
+td, th {
+border: 1px solid pink;
+}
+
+h3, #page {
+	text-align: center;	
+}
+</style>
+</head>
+<body>
+<!-- 화면 구성 완료 태그 -->
+<h1>boardlist를 출력합니다</h1>
+<form action="boardsearch.html">
+	<select>
+	<option>제목</option>
+	<option>내용</option>
+	<option>작성자</option>	
+	</select>
+	검색어입력: <input type=text>
+	<input type=submit value=검색>
+</form>
+
+<table border="3">
+<tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th></tr> <!-- 제목한줄 -->
+<tr><td>1</td><td><a href="boarddetail.html">제목1</a></td><td>작성자1</td><td>11</td></tr> <!-- 데이터 -->
+<tr><td>2</td><td><a href="boarddetail.html">제목2</a></td><td>작성자2</td><td>26</td></tr>
+<tr><td>3</td><td><a href="boarddetail.html">제목3</a></td><td>작성자3</td><td>32</td></tr>
+<tr><td>4</td><td><a href="boarddetail.html">제목4</a></td><td>작성자4</td><td>40</td></tr>
+<tr><td>5</td><td><a href="boarddetail.html">제목5</a></td><td>작성자5</td><td>45</td></tr>
+</table>
+
+<h3>페이지번호</h3>
+<div id="page">
+<a href="boardlist2.html">1</a>
+<a href="boardlist2.html">2</a>
+<a href="boardlist2.html">3</a>
+<a href="boardlist2.html">4</a>
+<a href="boardlist2.html">5</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<style type="text/css">
+	/*h1 {color:red;} h1 태그선택 */
+	/* * {color:red;} /*모든 태그 선택*/
+	/*#first {color:lime;} /*id first인 태그 선택*/
+	/* .redgroup {color:red;} class redgroup인 태그 선택*/
+	/*input[type=text] {color:red;} /*input태그이면서 type이 text인것*/
+	/*input[name] {color:red;}*/ 
+	/*body a {color:red;}*/
+	/*
+	자손
+	후손
+	*/
+	/*h1:hover {color:blue;} /*h1 올려놨을 때 상태 - 활성화*/
+	/*h1:active {color:red;} /*h1 클릭했을 때 상태 - 활성화*/
+	/*input[type=radio]:checked {color:red;}	
+	option[selected] {color:red;}*/
+	/*option:nth-child(2n) {color:red;}
+		  :first-child,
+		  :last-child*/
+	/*h1 {display:none}*/
+	#upper{
+	background: pink;
+	/*width:200px;*/
+	width: 200px;
+	height: 100px;
+	font-size:2em; /*200%*/
+	/*border: solid 10px aqua;*/
+	border-style: dotted;
+	border-width: 20px;
+	border-color: #654321;
+	margin: 20px;
+	padding: 50px;
+	border-radius: 20px;
+	}
+	#lower div {display: inline-block;}
+	body {
+	background-image: url('/html/images/google.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100px;
+	}
+	#first {
+		font-size: 20px;
+		font-family: sans-serif;
+	}
+	a {
+	color: #00ff00;
+	text-decoration: none;
+	}
+	#align {
+		background-color: #eeeeee;
+		width: 400px;
+		text-align: center;
+		margin: auto;
+	}
+</style>
+<div id="upper"> div태그 영역입니다 </div>
+<div id="lower">
+	<div> 아래쪽 div1 </div>
+	<div> 아래쪽 div2 </div>
+	<div> 아래쪽 div3 </div>
+</div>
+<h1>첫번째 제목</h1>
+<p id="first"> p 태그는 하나의 문단을 표현합니다. asdasxccz</p>
+<div id="align">정렬 테스트중입니다.</div>
+<a href="/html/first.html">이동</a>
+<h1><a href="/html/first.html">이동</a></h1>
+<p class="redgroup">p 태그는 하나의 문단을 표현합니다. 두번째 문단입니다.</p>
+아이디입력<input type=text value="none">
+암호입력<input type=password value="none">
+이름입력<input type=text value="이름입력칸">
+성별 <input type=radio name=gen value=여 checked=checked> 여자
+<input type=radio name=gen value=남 checked=checked> 남자
+<br>
+<select>
+<option id="a"> 첫번째</option>
+<option selected="selected"> 두번째</option>
+<option> 세번째</option>
+<option> 네번째</option>
+<option> 다섯번째</option>
+<option> 여섯번째</option>
+</select>
+</body>
+</html>
