@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+var inform = prompt();
+var inform_list = inform.split(' ');
+
+var student = {
+	name : inform_list[0],
+	kor : inform_list[1], 
+	eng : inform_list[2], 
+	mat : inform_list[3],
+	sum: 0,
+	avgFloat: 0,
+	avgInt: 0,
+	grade: '',
+	calc: function(){
+		//정수타입으로 변환
+		this.kor = parseInt(this.kor);
+		this.eng = parseInt(this.eng);
+		this.mat = parseInt(this.mat);
+		this.sum = this.kor + this.eng + this.mat;	
+		this.avgFloat = this.sum / 3;
+		this.avgInt = parseInt(this.avgFloat);
+	},
+	getGrade: function(){
+		if(this.avgInt >= 90)			
+			this.grade="A등급";
+		else if(this.avgInt >= 80)
+			this.grade="B등급";
+		else if(this.avgInt >= 70)
+			this.grade="C등급";
+		else if(this.avgInt >= 60)
+			this.grade="D등급";
+		else
+			this.grade="F등급";
+	},
+	toString: function(){
+		return "이름= "+this.name+"<br>국어= "+this.kor+
+		"<br>영어= "+this.eng+"<br>수학= "+this.mat+
+		"<br>총점= "+this.sum+"<br>실수평균= "+this.avgFloat+
+		"<br>정수평균= "+this.avgInt+"<br>등급= "+this.grade
+	}
+};
+
+student.calc();
+student.getGrade();
+document.write(student+"<br>");
+
+//student객체를 JSON포맷으로 변경
+var json_student = JSON.stringify(student);
+document.write(json_student+"<br>");
+
+//다른 프로그램이 자바스크립트로 json 전달받아서 해석 원래 자바스크립트 객체로 사용하려고
+var origin_student = JSON.parse(json_student);
+document.write(origin_student.name+"<br>");
+document.write(origin_student.grade+"<br>");
+</script>
+
+</body>
+</html>

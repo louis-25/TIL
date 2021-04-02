@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 1.prompt 창에서 입력한다. 4가지 정보를 입력한다.
+학생이름 국어 영어 수학
+2. 입력한 정보를 분리한다.
+3. 총점, 평균(실수), 평균(점수) 계산한다.
+4. 정수평균에 따라서 등급
+90이상 : A
+80이상 - 90미만: B
+70이상 - 80미만: C
+60이상 - 70미만: D
+나머지		   F
+5. 출력한다.
+===> student 객체정의()-->
+<script type="text/javascript">
+var student = {
+	총점 : 0,
+	실수평균 : 0,
+	정수평균 : 0,
+	등급 : function(평균){
+		if(평균 >= 90)
+			return "A등급"
+		else if(평균 >= 80 )
+			return "B등급"
+		else if(평균 >= 70 )
+			return "C등급"
+		else if(평균 >= 60 )
+			return "D등급"
+		else
+			return "F등급"			
+	}
+};
+
+var 이름 = prompt("이름을 입력하세요.");
+document.write("이름: "+이름+ "<br>");
+var 국어 = prompt("국어점수를 입력하세요");
+document.write("국어: "+국어+ "<br>");
+var 수학 = prompt("수학점수를 입력하세요");
+document.write("수학: "+수학+ "<br>");
+var 영어 = prompt("영어점수를 입력하세요");
+document.write("영어: "+영어+ "<br>");
+student.총점 = parseInt(국어)+parseInt(수학)+parseInt(영어);
+student.평균_정수 = student.총점 / 3; 
+
+document.write("총점: "+student.총점 + "<br>");
+document.write("평균: "+student.평균_정수 + "<br>");
+document.write("등급: "+student.등급(student.평균_정수) + "<br>");
+
+</script>
+</body>
+</html>

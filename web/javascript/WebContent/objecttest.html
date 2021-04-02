@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+var product = {
+	code : 100,
+	name : '멀티컴퓨터',
+	price : 1000000,
+	detail : '자세한 상품 정보',
+	images : ['pr1.jpg', 'pr2.jpg', 'pr3.jpg'],
+	calcPrice : function(sale){
+		this.price = this.price * (1-sale);
+		return this.price;
+	}
+};
+
+document.write(product.code + "<br>")
+document.write(product['code'] + "<br>")
+document.write("원가격="+product.images.join(" | ")+ "<br>");
+var saleprice = product.calcPrice(0.2);
+document.write("세일후가격="+saleprice+"<br>")
+
+document.write(typeof product + "<br>")
+</script>
+	
+</body>
+</html>

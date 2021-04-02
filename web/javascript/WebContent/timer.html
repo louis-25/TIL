@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	function f1() {
+		var div_list = document.getElementsByTagName("div");
+		alert(div_list[0].innerHTML);	
+		var date = new Date();
+		//var datestring = date.getLocaleDateString();
+		div_list[0].innerHTML = date;
+	}
+	//setTimeout(f1, 5000); //5초후 실행
+	//setInterval(f1, 1000);// 1초마다 실행
+	var timer_id = setInterval(f1, 1000);
+	setTimeout(function(){clearInterval(timer_id)}, 10000); //10초후에 타이머 해제
+</script>
+</body>
+<div>시간 출력 예정입니다.</div>
+</html>
