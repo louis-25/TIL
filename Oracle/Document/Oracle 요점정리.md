@@ -558,6 +558,18 @@ edit - 직전에 입력한 SQL문을 수정할 수 있다
 
 <BR>
 
+### .sql파일만들기
+
+window → show view → other → Data Source Exploer
+
+프로젝트 우클릭 → new other → SQL Development → SQL File생성
+
+Database Connection 우클릭 →New → Oracle → New Driver Definition → Oracle 11버전 → JAR List 탭 → oracle14버전 삭제 → ojdbc6.jar추가 →저장
+
+→ Service Name, Host, User name, password 변경
+
+<br>
+
 **SELECT문 실행순서**
 
 1. from → 2.where(일반조건식) → 3.group by → 4.having(그룹함수조건식) → 5.select
