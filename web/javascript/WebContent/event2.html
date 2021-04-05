@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	document.querySelector("a").onclick = function(e){
+		e.preventDefault(); //이벤트 기본동작을 방지한다		
+	}
+	/*document.querySelector("#f").onclick = function(e){
+		e.preventDefault(); //이벤트 기본동작을 방지한다		
+	}*/
+	let button = document.querySelector("#inform");
+	button.onclick = function() {
+		//e.preventDefault(); //이벤트 기본동작을 방지한다
+		let a_list = document.querySelectorAll('a');
+		let div = document.querySelector("#result");
+		for(let i=0; i<a_list.length; i++) {									
+			div.innerHTML += a_list[i].innerHTML + " - " + a_list[i].href+'<br>';
+		}
+		
+		a_list.forEach(function(one){
+			div.innerHTML += one.innerHTML + " - " + a_list[i].href+'<br>';
+		})	
+	}
+	
+	/*//mouse 이동시마다 색상변경 -> 고전 이벤트 모델
+	document.querySelector('#mousetest').onmouseover=
+		function() {
+		document.querySelector('#mousetest').style.backgroundColor='green'
+	}
+	document.querySelector('#mousetest').onmouseout=
+		function() {
+		document.querySelector('#mousetest').style.backgroundColor='blue'
+	}*/
+
+	//표준 이벤트 모델
+	document.querySelector('#mousetest')
+	.addEventListener("mouseover", ()=>{
+		document.querySelector('#mousetest').style.backgroundColor='pink'
+	})
+	
+	document.querySelector('#mousetest')
+	.addEventListener("mouseout", ()=>{
+		document.querySelector('#mousetest').style.backgroundColor='aqua'
+	})
+}
+</script>
+</head>
+<body>
+<a href="https://www.naver.com" target="_blank">네이버로 이동</a><br>
+<a href="https://www.daum.net" target="_blank"> 다음으로 이동</a><br>
+<a href="https://www.google.com" target="_blank">구글로 이동</a><br>
+<a href="https://www.apple.com" target="_blank">애플로 이동</a><br>
+<form id=f action="a.jsp">
+	<input type=text>
+	<!-- <input type=submit value='전송'>
+	<input type=submit id='f' value='전송2'>-->
+	<input type=submit id='inform' value='a버튼'>
+</form>
+
+<button id='inform'><b>링크정보</b></button>
+<div id='result'>
+<!-- 
+링크정보 버튼 클릭하면
+현재 페이지에 a태그 존재하는 만큼
+각 a태그 멀캠으로 이동
+ -->
+</div>
+<div id='mousetest'>마우스를 올려보세요</div>
+</body>
+</html>

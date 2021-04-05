@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function selectNum(e){
+	alert(e.value + "가 선택 되었습니다.");
+}
+</script>
+</head>
+<body>
+
+<h1 id="title">boardlist를 출력합니다</h1>
+<form action="boardsearch.html" method="get">	
+<select name="inform" onchange="selectNum(this)">
+	<option value=1 selected> 제목1</option>
+	<option value=2> 제목2</option>
+	<option value=3> 제목3</option>
+	<option value=4> 제목4</option>
+</select>
+	검색어:
+	<input type=text>
+	<input type=submit value="검색" src="boardsearch.html">
+</form>
+<table id="list">
+<!-- 
+<tr><td>1행 1열 제목이 자바 인 형태를 검색하셨습니다. </td></tr>
+2행 1열 내용이 오라클 인 형태를 검색하셨습니다.
+ -->
+</table>
+</body>
+</html>

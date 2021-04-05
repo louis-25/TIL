@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Select Event</title>
+<script type="text/javascript">
+	function selectEvent(selectObj) {
+		alert(selectObj.value + "가 선택 되었습니다.");
+	}
+</script>
+</head>
+<body>
+	<select name="select" onChange="selectEvent(this)">
+		<option value="menu1" selected>메뉴 1</option>
+		<option value="menu2">메뉴 2</option>
+		<option value="menu3">메뉴 3</option>
+	</select>
+</body>
+</html>

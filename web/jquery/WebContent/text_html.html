@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*window.onload = function() {
+	document.querySelector('div').innerHTML += "내용 수정" //div setter
+	alert(document.querySelector('div').innerHTML); //div getter
+}*/
+</script>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('div').text($('div').text() + "내용 수정"); //기존div의 내용을 가져와 추가내용을 더해준다
+	alert($('div').text()); //div getter
+})
+</script>
+</head>
+<body>
+<div>div 태그의 innerHTML 영역입니다.</div>
+</body>
+</html>
