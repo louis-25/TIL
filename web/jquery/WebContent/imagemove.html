@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	var img_list= ["/html/images/americano.jpg",
+		"/html/images/blackcoffee.gif",
+		"/html/images/cafelatte.jpg","/html/images/cappuccino.jpg",
+		"/html/images/coffee.gif"];
+	
+	for(var i = 0; i< img_list.length; i++){
+		var f1 = function(index) {
+		setTimeout(function(){
+			$('#image').append("<img src='"+img_list[index]+"' width=200 height=200>"
+		);
+		}, (i+1)*1000);
+		}
+		
+		f1(i);
+	}
+	
+});
+</script>
+</head>
+<body>
+<div id="image">
+<img src="/html/images/android.jpg" width="200" height=200>
+<img src="/html/images/chrome.jpg" width="200" height=200>
+<img src="/html/images/google.png" width="200" height=200>
+</div>
+</body>
+</html>

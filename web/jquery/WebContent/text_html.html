@@ -12,12 +12,30 @@
 <script src="jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	$('div').text($('div').text() + "내용 수정"); //기존div의 내용을 가져와 추가내용을 더해준다
-	alert($('div').text()); //div getter
+	//$('div').text($('div').text() + "<h1>내용 수정<h1>"); //기존div의 내용을 가져와 추가내용을 더해준다
+	//alert($('div').text()); //div getter
+	var value = $("input[type=text]").val()
+	//css 선택자 조건 태그 2개이상 - 무조건 첫번째선택
+	var value2 = $("input[type=checkbox]:checked").val();
+	var value3 = $("input[type=checkbox]");
+	//$('#here').html(value3[0].value+":"+value3[1].value);
+	//$("#here").html("<h1>"+value2+"</h1>");
+	
+	//선택한 태그만큼 반복해서 value값 읽기
+	var value4 = $("input[type=checkbox]").val(function(){
+		//$('#here').html("#here").html() + ":"+$(this).val();
+		$('#here').append($(this).val()+":");
+	});
+	
 })
 </script>
 </head>
 <body>
 <div>div 태그의 innerHTML 영역입니다.</div>
+<input type=text value="입력값입니다">
+<input type=password>
+<input type=checkbox value="choice1"> 선택1
+<input type=checkbox value="choice2"> 선택2
+<div id='here'> 여기에 결과 보입니다. </div>
 </body>
 </html>

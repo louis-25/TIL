@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('textarea').focus(); // textarea에 포커스를 맞춤
+	$('textarea').on('keyup', function(){
+		var input_len = $(this).val().length;
+		var remain_len = 10 - input_len;
+		$('h1').text(remain_len);
+		$('h2').text(" 글자 남았습니다.");
+		if(remain_len < 0) {
+			$(this).attr("readonly", "readonly");
+			$("h1").css("color", "red");
+		}
+	});
+	
+	//$("h1").empty();
+	//$("h2").remove();
+	//$("body").append("<h1>")
+	//$("h1").hide(3000);
+	//$("h1").show(3000);
+	//$("h1").fadeOut(3000);
+	//$("h1").fadeIn(3000);
+	//$("h1").slideToggle()
+	//$("h1").fadeToggle()
+	
+})
+</script>
+</head>
+<body>
+<h1> 10 </h1>
+<h2> 글자 입력 가능합니다 </h2>
+<textarea rows=5 cols=100>
+
+</textarea>
+</body>
+</html>

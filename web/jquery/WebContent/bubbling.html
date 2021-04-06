@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("h1").on('click', function(){
+		$(this).css("background-color", "red");
+	});
+	$("div").on('click', function(e){
+		$(this).css("background-color", "yellow");
+		$(this).css('width', '200px');
+		e.stopPropagation(); //버블링 방지
+	});
+	$("a").on('click', function(e){
+		e.preventDefault();		
+		e.stopPropagation();
+	})
+});
+</script>
+</head>
+<body>
+<h1><a href="a.html" target="_blank">이동</a></h1>
+<!-- <h1><div> 클릭합니다. </div></h1>-->
+</body>
+</html>
