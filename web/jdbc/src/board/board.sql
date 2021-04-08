@@ -34,3 +34,7 @@ select seq, title, writer, viewcount
 					from (select * from board order by time desc)
 					)
 					where r between 1 and 10;
+					
+					
+insert into board(seq, title, writer, viewcount) values(15,'제목15', 'java', 0);
+

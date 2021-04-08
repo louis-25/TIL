@@ -22,7 +22,7 @@ public class GugudanServlet2 extends HttpServlet {
 		String dan = request.getParameter("dan");
 		int outputdan = 0;
 		int dan2 = Integer.parseInt(dan);
-		if()
+		
 	}
 
 }
