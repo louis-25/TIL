@@ -23,7 +23,7 @@ public class BoardWriteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		BoardDAO dao = new BoardDAO();
-		BoardDTO dto = null;
+		BoardDTO dto = new BoardDTO();
 		
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");

@@ -14,18 +14,15 @@ public class BoardDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "jdbc", "jdbc");
-//			String insertSQL = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate, ?, ?)";
 			String insertSQL = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate, ?, 0)";
 			pt = con.prepareStatement(insertSQL);
 			pt.setString(1, dto.getTitle());
 			pt.setNString(2, dto.getContents());
 			pt.setNString(3, dto.getWriter());
 			pt.setInt(4, dto.getPassword());
-//			pt.setInt(5, 0); // 조회수
 			
 			int cnt = pt.executeUpdate(); // cnt == 1
 			System.out.println(cnt+" 개의 글 저장 완료");
-//			con.prepareStatement(insertSQL);
 		}catch(ClassNotFoundException e) {
 			System.out.println("드라이버 정보를 확인하세요");
 		}catch(SQLException e) {
@@ -50,7 +47,7 @@ public class BoardDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection
 			("jdbc:oracle:thin:@127.0.0.1:1521:xe", "jdbc", "jdbc");
-			String selectSQL = "SELECT * FROM BOARD order by time desc";
+			String selectSQL = "SELECT * FROM Board order by time desc";
 			pt = con.prepareStatement(selectSQL);
 			rs = pt.executeQuery(); //컬럼명 위치
 			while(rs.next()) { //번호 제목  작성자 조회수 
@@ -168,7 +165,7 @@ public class BoardDAO {
 			("jdbc:oracle:thin:@127.0.0.1:1521:xe", "jdbc", "jdbc");
 			
 			String updateSQL = "update board set viewcount = viewcount+1 where seq=?";
-			String selectSQL ="select * board where seq=?";
+			String selectSQL ="select * from board where seq=?";
 						
 			pt = con.prepareStatement(updateSQL);
 			pt.setInt(1, seq);
