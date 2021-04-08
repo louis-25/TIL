@@ -1,6 +1,6 @@
 create table Student (
-	No int,
-	name char(10) constraint Student_name_pk primary key,
+	No int constraint Student_name_pk primary key,
+	name char(10), 
 	det char(20),
 	addr char(80),
 	tel char(20)
