@@ -25,7 +25,7 @@ public class BoardServlet1 extends HttpServlet {
 		// 전달받은 list를 table 출력
 		
 		//list전달
-		request.setAttribute("board", list); 
+		request.setAttribute("boardlist", list); 
 		
 		//forward2와 공유
 		RequestDispatcher dis = request.getRequestDispatcher("board2");

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/boardlist")
@@ -60,9 +61,17 @@ public class BoardListServlet extends HttpServlet {
 		result += "<script>document.getElementById('write').onclick = function(){"
 				+ "location.href='boardwrite.html'"
 				+ "}</script>";
+					
+		//작성자 xxx가(세션에서 가져옴) 글쓰기를 완료했습니다 출력		
+		HttpSession session = request.getSession();
+		String session_writer = (String)session.getAttribute("session_writer");
+		BoardDTO board = (BoardDTO)session.getAttribute("board");
+				
+		result += "<br><h3>"+session_writer+"가 작성했습니다"+"</h3>";
+		result += "<h3>글 작성내용</h3>";
+		result += board.getTitle()+" ; "+board.getContents()+" : "+board.getPassword();
 		
 		out.println(result);
-		
 	}
 
 }
