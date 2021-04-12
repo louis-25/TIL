@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	table, td:{board=3px solid green;}
+	table, td{board=3px solid green;}
 	table: {margin=auto;}
 </style>
 </script>
