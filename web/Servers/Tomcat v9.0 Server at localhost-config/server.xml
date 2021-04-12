@@ -155,20 +155,9 @@
       <Context docBase="jquery" path="/jquery" reloadable="true" source="org.eclipse.jst.jee.server:jquery"/>
       <Context docBase="task" path="/task" reloadable="true" source="org.eclipse.jst.jee.server:task"/>
       <Context docBase="servlettest" path="/servlettest" reloadable="true" source="org.eclipse.jst.jee.server:servlettest">
-      	<Resource 
-	      name="jdbc/myoracle" 
-	      MaxActive="5" 
-	      auth="Container" 
-	      maxIdle="5" 
-	      maxWait="-1" 
-	      type="javax.sql.DataSource" 
-	      
-	      driverClassName="oracle.jdbc.driver.OracleDriver" 
-	      password="jdbc" 
-	      url="jdbc:oracle:thin:@127.0.0.1:1521:xe" 
-	      username="jdbc"/>      	
+      	<Resource MaxActive="5" auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxIdle="5" maxWait="-1" name="jdbc/myoracle" password="jdbc" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521:xe" username="jdbc"/>      	
       	
-      </Context></Host>
+      </Context><Context docBase="jsp" path="/jsp" reloadable="true" source="org.eclipse.jst.jee.server:jsp"/></Host>
     </Engine>
   </Service>
 </Server>
