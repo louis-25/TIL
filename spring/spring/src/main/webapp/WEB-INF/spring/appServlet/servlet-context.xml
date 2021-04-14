@@ -23,6 +23,17 @@
 	
 	<context:component-scan base-package="multi.campus.spring" />
 	
+	<beans:bean id="HelloController" class="multi.campus.spring.HelloController"/>
+	<beans:bean id="HelloController2" class="multi.campus.spring.HelloController"/>
+	<beans:bean id="urlMapping"
+	class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<beans:property name = "mappings">
+			<beans:props>
+				<beans:prop key="/hello"> HelloController</beans:prop>
+				<beans:prop key="/hello2"> HelloController2</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
 	
 	
 </beans:beans>

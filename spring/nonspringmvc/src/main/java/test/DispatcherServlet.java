@@ -1,0 +1,33 @@
+package test;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("*.mvc") //다중 url - 1개 서블릿 - 여러 요청이 1개 서블릿 집중 강제적
+public class DispatcherServlet extends HttpServlet {
+//http:127.0.0.1:9090/nonspringmvc/hello.mvc
+//http:127.0.0.1:9090/nonspringmvc/boardlist.mvc
+// HelloCongtroller - "hello spring"  - hello.jsp 	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = request.getRequestURI();// nonspringmvc/dispatcher/hello.mvc
+		String path_spl []= path.split("/");
+		String result = path_spl[path_spl.length-1];
+		System.out.println(result);
+		//1. HelloController  호출
+		HandlerMapping mapping = new HandlerMapping();// hello.mvc - HelloController객체생성
+		Controller controller = mapping.getController("hello.mvc");
+		String viewName = controller.handleRequest(request, response);//model, jsp 이름 리턴
+		//2. view  이동
+		RequestDispatcher rd = request.getRequestDispatcher(viewName);
+		rd.forward(request, response);
+		//request.setAttribute("" , "")
+	}
+	
+
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		
+	<bean id="service" class="memberservice.MemberServiceImpl">
+		<property name="memberDAO" ref="dao"></property>
+	</bean>
+	
+	<bean id="dao" class="memberservice.MemberDAO">
+		<property name="memberVO" ref="vo"></property>
+	</bean>
+	
+	<bean id="vo" class="memberservice.MemberVO">
+	<constructor-arg value="spring"/>
+	<constructor-arg value="work"/>
+	</bean>
+	
+	<bean id="vo2" class="memberservice.MemberVO">
+	<constructor-arg value="spring"/>
+	<constructor-arg value="work"/>
+	</bean>
+		
+</beans>
