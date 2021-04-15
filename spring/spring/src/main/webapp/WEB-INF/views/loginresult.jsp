@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="jquery-3.2.1.min.js"></script>
+<script src="resources/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
 	
@@ -14,6 +14,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<h1>${vo.id } 회원님 : ${vo.pw }</h1>
 <h1>${result}</h1>
 </body>
 </html>

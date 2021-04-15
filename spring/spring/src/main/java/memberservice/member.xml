@@ -18,8 +18,8 @@
 	</bean>
 	
 	<bean id="vo2" class="memberservice.MemberVO">
-	<constructor-arg value="spring"/>
-	<constructor-arg value="work"/>
+	<constructor-arg value="servlet"/>
+	<constructor-arg value="jsp"/>
 	</bean>
 		
 </beans>

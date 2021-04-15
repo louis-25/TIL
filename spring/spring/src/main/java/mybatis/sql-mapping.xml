@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kdigital">
+	<select id="oneEmp" resultType="mybatis.EmpVO" parameterType="int">
+		SELECT * FROM employees WHERE employee_id=#{employee_id}
+	</select>
+
+	<select id="manyEmp" resultType="emp">
+	<![CDATA[SELECT * FROM employees WHERE employee_id < 200]]>
+	</select>
+
+	<insert id="insertEmp" parameterType="emp">
+		INSERT INTO employees VALUES(
+			#{employee_id},#{first_name},#{last_name},
+			#{email},#{phone_number},SYSDATE,
+			#{job_id},#{salary},null,#{manager_id},
+			#{department_id}
+		)
+	</insert>
+
+	<update id="updateEmp" parameterType="emp">
+		UPDATE employees
+		SET first_name=#{first_name}
+		WHERE employee_id=#{employee_id}
+	</update>
+	
+	<delete id="deleteEmp" parameterType="int">
+		DELETE FROM employees WHERE employee_id=#{employee_id}
+	</delete>
+	
+	<select id="pageEmp" resultType="emp" parameterType="int[]">
+		SELECT r, employee_id, first_name
+		FROM (SELECT ROWNUM r, employee_id, first_name
+			FROM (SELECT * FROM employees ORDER BY hire_date DESC)
+			)
+		WHERE r BETWEEN
+		<foreach collection="array" item="num" separator="AND">
+			#{num}
+		</foreach>
+	</select>
+	
+	<insert id="insertEmp2" parameterType="emp">
+		<selectKey resultType="int" keyProperty="employee_id">
+			SELECT emp_seq.nextval FROM dual;
+		</selectKey>
+		INSERT INTO employees VALUES (
+			#{employee_id},#{first_name},#{last_name},
+			#{email},#{phone_number},SYSDATE,#{job_id},
+			#{salary},null,#{manager_id},#{department_id}
+		)
+	</insert>
+	
+</mapper>
