@@ -1,11 +1,12 @@
 package mybatis;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 public class EmpDAO {
-	SqlSession session;
+	SqlSession session; //sql에 접근할때 사용
 
 	public void setSession(SqlSession session) {
 		this.session = session;
@@ -39,5 +40,13 @@ public class EmpDAO {
 
 	public void insertEmp2(EmpVO vo) {
 		session.insert("kdigital.insertEmp", vo);
+	}
+	
+	public List<EmpVO> getEmpDept(List<Integer> deptList){
+		return session.selectList("kdigital.selectwithlist", deptList);
+	}
+	
+	public void updateEmpMap(Map<String, String> map) {
+		session.update("kdigital.updatewithmap", map);
 	}
 }

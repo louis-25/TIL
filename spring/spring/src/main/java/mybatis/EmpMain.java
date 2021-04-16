@@ -1,7 +1,10 @@
 package mybatis;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +16,7 @@ public class EmpMain {
 	public static void main(String[] args) throws IOException{		
 		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 		SqlSessionFactory factory = builder.build(Resources.getResourceAsReader("mybatis/db-config.xml"));
-		SqlSession session = factory.openSession(true);
+		SqlSession session = factory.openSession(true); // true - 자동커밋
 
 		EmpService service = new EmpServiceImpl();
 		EmpDAO dao = new EmpDAO();
@@ -55,9 +58,43 @@ public class EmpMain {
 		for(EmpVO vo : list) {
 			System.out.println(vo);
 		}*/
+		
+		/*				
 		EmpVO vo = new EmpVO(300,"사원", "김", "kim@a.com", "01012344321", "IT_PROG", 100, 30000, 50);
 		service.insertEmp(vo); //DB에 저장
-		System.out.println("1명의 사원 저장 완료");
+		System.out.println("1명의 사원 저장 완료");*/
+		
+		EmpVO vo = new EmpVO();
+//		vo.setEmployee_id(2000);
+		vo.setFirst_name("호우");
+		vo.setLast_name("김");//not null
+		vo.setJob_id("IT_PROG");//jobs테이블 참조
+		vo.setDepartment_id(100);//departments테이블 참조
+		vo.setEmail("hou@naver.com");//unique - 이메일은 하나만 존재해야하므로 DB에없는값으로 입력하자
+		vo.setPhone_number("010222222");
+		vo.setSalary(1000);
+		service.insertEmp2(vo);
+		System.out.println("===insert seq 완료===");
+		
+		//ArrayList
+//		List<Integer> deptList = new ArrayList<Integer>();
+//		deptList.add(10);
+//		deptList.add(50);
+//		deptList.add(80);
+//		deptList.add(100);
+//		List<EmpVO> list = service.getEmpDept(deptList);
+//		for(EmpVO vo :list) {
+//			System.out.println(vo.getEmployee_id()+":"+vo.getFirst_name()+":"+vo.getDepartment_id());//
+//		}
+		
+		//Update
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("dept", "50");
+//		map.put("email", "a2@b.com");
+//		map.put("id", "0");
+//		
+//		service.updateEmpMap(map);
+//		System.out.println("업데이트 수행완료");
 	}
 
 }

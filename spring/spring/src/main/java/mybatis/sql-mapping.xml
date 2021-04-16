@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kdigital">
 	<select id="oneEmp" resultType="mybatis.EmpVO" parameterType="int">
-		SELECT * FROM employees WHERE employee_id=#{employee_id}
+		SELECT * FROM employees WHERE employee_id=#{employee_id
 	</select>
 
 	<select id="manyEmp" resultType="emp">
@@ -29,6 +29,7 @@
 		DELETE FROM employees WHERE employee_id=#{employee_id}
 	</delete>
 	
+	<!-- 페이지처리 -->
 	<select id="pageEmp" resultType="emp" parameterType="int[]">
 		SELECT r, employee_id, first_name
 		FROM (SELECT ROWNUM r, employee_id, first_name
@@ -42,7 +43,7 @@
 	
 	<insert id="insertEmp2" parameterType="emp">
 		<selectKey resultType="int" keyProperty="employee_id">
-			SELECT emp_seq.nextval FROM dual;
+			SELECT emp_seq.nextval FROM dual; <!-- 시퀸스가 없으면 생성해라 -->
 		</selectKey>
 		INSERT INTO employees VALUES (
 			#{employee_id},#{first_name},#{last_name},
@@ -50,5 +51,26 @@
 			#{salary},null,#{manager_id},#{department_id}
 		)
 	</insert>
+	
+	<!-- 부서의 목록을 자바에 리스트로 전달해보자 -->
+	<select id="selectwithlist" parameterType="java.util.List" resultType="emp">
+		select employee_id, first_name, department_id
+		from employees
+		where department_id in 
+		
+		<!-- collection에는 array list map 등이 들어간다 -->
+		<foreach collection="list" item="deptlist" open="(" separator="," close=")"> 
+			#{deptlist}
+		</foreach>		
+	</select>
+	
+	<!-- 자바에서 파라미터를 받아오자 -->
+	<update id="updatewithmap" parameterType="java.util.Map">
+		update employees
+		set department_id=#{dept}, email=#{email}
+		where employee_id=
+		<if test="id == null">1</if>
+		<if test="id != null">#{id}</if>
+	</update>
 	
 </mapper>

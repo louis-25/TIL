@@ -1,6 +1,7 @@
 package mybatis;
 
 import java.util.List;
+import java.util.Map;
 
 public class EmpServiceImpl implements EmpService {
 	EmpDAO dao;
@@ -42,6 +43,17 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public void insertEmp2(EmpVO vo) {
 		dao.insertEmp2(vo);
+	}
+
+	@Override
+	public List<EmpVO> getEmpDept(List<Integer> deptList) {
+		return dao.getEmpDept(deptList);
+	}
+
+	@Override
+	public void updateEmpMap(Map<String, String> map) {
+		dao.updateEmpMap(map);
+		
 	}
 
 }
