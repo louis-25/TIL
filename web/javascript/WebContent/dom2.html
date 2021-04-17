@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function(){}
+	window.onload = function() {
+		 document.querySelector('h1').innerHTML += '제목수정';
+		 document.querySelectorAll('div')[1].innerHTML += '<h3>수정</h3>';
+		 document.querySelectorAll('div')[1].textContent += "<h3 style='color:red'>수정</h3>";
+		 document.querySelectorAll('div')[2].style.color='blue';
+		 document.querySelectorAll('div')[2].style.backgroundColor='yellow';
+		 
+		 for(var i=0; i<10; i++) {
+			 document.body.innerHTML += "<div>" + i + " 번째 생성</div>";
+		 }
+		 
+		 var div_list = document.querySelectorAll('div');
+		 for(var i = 0; i< div_list.length; i++){
+			 div_list[i].style.backgroundColor="#00" + (i+1)*10 + "00";
+		 }
+		 
+		 var img_tag = document.querySelector("img");
+		 img_tag.src="/html/images/google.png";
+		 img_tag.width=100;
+		 img_height=100;
+		 img_tag.setAttribute("user-define", "이미지~~");
+		 alert(img_tag.getAttribute("user-define"));
+		 
+	 }
+</script>
+</head>
+<body>
+<h1>제목</h1>
+<div>추가내용1</div>
+<div>추가내용2</div>
+<div>추가내용3</div>
+<img>
+</body>
+</html>

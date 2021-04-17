@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready (function(){
+	$('h1').css("color","red")
+	//$('h1')
+	//$('h1')
+	/*$('img').attr("src", "/html/images/google.png");
+	$('img').attr("width", "100");
+	$('img').attr("height", "100");
+	$('input').attr("type", "hidden")*/
+	/*$('img').attr({
+		src: "/html/images/google.png",
+		width:100,
+		height:100
+	});*/
+	
+	$('img').attr("src", "/html/images/google.png")
+	$('img').attr("width", function(index){
+		return (index+1)*100
+	});
+	
+	alert($('img').attr('src'));
+	alert($('.b').css('color'));
+	
+	
+})
+
+</script>
+</head>
+<body>
+<h1 id='a' class ='b'>gd</h1>
+<img><br>
+<img><br>
+</body>
+</html>

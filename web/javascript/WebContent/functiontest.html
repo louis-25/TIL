@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+/*function f1() {
+	alert("A");
+}
+
+f1();
+
+function f3() {
+	alert("B");
+}
+
+f3();
+
+var f2 = function() {
+	alert("C");
+}
+
+f2();*/
+
+function manytimes(f, n){
+	for(var i = 1; i<=n; i++){
+		f("html");
+	}
+}
+
+function tentimes(f){
+	for(var i = 1; i<=5; i++){
+		f("자바스크립트");
+	}
+}
+
+function print(message){
+	document.write("<h1>"+message+"</h1>");
+}
+manytimes(print, 5);
+
+var a = "전역"
+
+function vertest() {
+
+	var a = "지역";
+	document.write("<h1>"+a+"</h1>");
+}
+
+function vertest2() {
+	var a = "지역2";
+	document.write("<h1>"+a+"</h1>");
+}
+vertest();
+</script>
+</body>
+</html>

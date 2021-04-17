@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" >
+//스크립트방식
+window.onload = function() {
+	let click1 = document.getElementById('click1');
+	click1.onclick = function(event) {
+		alert(event.target.tagName);
+		alert(this.tagName); //event.target는 this와 같은표현이된다
+		click1.value='수정'
+	}
+}
+</script>
+</head>
+<body>
+<form action="a.jsp">
+	<input type=text value=' 입력하세요'><br>
+	<input type=submit value='전송'><br>
+	<input type=reset value='지움'><br>
+	입력하세요<br>
+	<input type=button id='click1' value='버튼1'><br>
+	<!-- inline방식 -->
+	<input type=button id='click2' value='버튼2' onclick="alert('클릭')"><br>
+</form>
+</body>
+</html>

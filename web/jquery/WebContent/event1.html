@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	/*$("h1").click(function(){
+		$("h1").css("border", "solid 3px aqua");
+	})*/
+	//위의 코드를 아래와같이 사용가능
+	/*$("h1").on('click',function(){
+		$("h1").css("border", "solid 3px aqua");
+	})*/
+	//this사용하면 현재 내가 선택한요소만 적용
+	$("h1").css("color","red").on('click',function(){
+		$(this).css("border", "solid 3px aqua");
+	});
+	$("h1").on('click',function(){
+		$(this).css("border", "solid 3px aqua");
+	});
+	//첫번째 div만 선택
+	$("div:first").mouseover(function(){
+		$(this).css("background-color", "blue");
+	});
+	$("div:first").mouseout(function(){
+		$(this).css("background-color", "orange");
+	});
+	$("button").on('click',function(){
+		$("h1").off('click'); //클릭이벤트 해제
+	});
+	$("#stop").on('click', function(){
+		$("h1").off('click');
+	});
+	$("#one").one('click', function(){
+		alert(1);
+	});
+	$("a").on('click', function(e){
+		e.preventDefault(); //a태그의 기본동작 제거
+		$(this).css("text-decoration", "none");
+		$(this).css("color","green");
+	})
+	
+	$("#btn_new").on('click', function(){
+		$("#result").append("<button id=after1>추가버튼</button>");
+	})
+	
+	//동적 추가 버튼 클릭시
+	$("#result").on('click', '#after1', function(){
+		alert("추가버튼 클릭");
+	})
+	
+	
+});//ready end
+</script>
+</head>
+<body>
+<h1>클릭하세용</h1>
+<h1>클릭하세용2</h1>
+<div>마우스 올려보세용</div>
+<button id="stop">동작 그만</button>
+<button id="one">1번 동작 그만</button>
+<a href="https://www.naver.com">네이버로 이동</a>
+<button id=btn_new>버튼생성</button>
+<div id=result></div>
+</body>
+</html>

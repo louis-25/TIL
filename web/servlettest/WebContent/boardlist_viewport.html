@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' >
+<meta name="viewport" 
+content="width=device-width, 
+initial-scale=1.0,
+user-scalable=no"> 
+<!-- <meta name="viewport" 
+content="width=device-width, 
+initial-scale=1.0,
+user-scalable=no, 
+maximum-scale=1.0, 
+minimum-scale=1.0"> -->
+<title>Insert title here</title>
+<style>
+/* h1 제목 가로 크기 400px 파랑색 경계 실선, 글씨 녹색,가로 중앙 정렬
+table 가로 중앙 정렬, 글씨들 중앙정렬, 경계선 실선 pink
+제목들 마우스 오버시 글씨색상 빨강, 20PX , 포인터 다른것 변경
+페이지번호 제목, 페이지번호들 화면 가로 중앙 정렬 */
+body{
+/* background-color: black; */
+background-image: url('images/iphone.png');
+background-repeat: no-repeat;
+background-position: center;
+}
+h1 {
+width:400px;
+margin:50px auto;
+text-align:center;
+border:blue solid 2px;
+border-radius:10px;
+box-shadow:-5px -5px 5px red;
+text-shadow:5px 5px 5px green;
+color:green;
+}
+table{
+margin:50px auto;
+text-align: center;
+border : solid pink 3px;
+border-collapse:collapse;
+}
+td {
+border : solid pink 3px;
+}
+td a:hover{
+cursor:move; 
+color:red;
+font-size:20px;}
+h3{text-align: center;}
+div{text-align:center;}
+
+tr:first-child {
+	background-color: gray;
+}
+@media screen and (max-width:1000px){
+body {background-image: none;}
+h1, table { margin : auto;}
+}
+
+
+
+/* @media all and (max-width:800px) {
+h1, table { margin:auto;}
+body {background-image: none;}
+}  */
+</style>
+</head>
+<body>
+<h1> boardlist를 출력합니다. </h1>
+<select>
+	<option> 제목 </option>
+	<option> 내용 </option>
+	<option> 모두 </option>	
+</select>
+검색어:<input type=text maxlength=30 >
+<input type=button value="검색" ><br>
+
+<table>
+<tr>
+<td>번호</td><td>제목</td>
+<td>작성자</td><td>조회수</td>
+</tr>
+<tr>
+<td>1</td><td><a href="boarddetail.html">제목1</a></td>
+<td>작성자1</td><td>0</td>
+</tr>
+<tr>
+<td>2</td><td><a href="boarddetail.html">제목2</a></td>
+<td>작성자2</td><td>0</td>
+</tr>
+<tr>
+<td>3</td><td><a href="boarddetail.html">제목3</a></td>
+<td>작성자3</td><td>11</td>
+</tr>
+<tr>
+<td>4</td><td><a href="boarddetail.html">제목4</a></td>
+<td>작성자4</td><td>22</td>
+</tr>
+<tr>
+<td>5</td><td><a href="boarddetail.html">제목5</a></td>
+<td>작성자5</td><td>11</td>
+</tr>
+</table>
+
+<h3>페이지번호 </h3>
+<div>
+<a href="boardlist.html"> 1 </a>&nbsp;
+<a href="boardlist.html"> 2 </a>&nbsp;
+<a href="boardlist.html"> 3 </a>&nbsp;
+<a href="boardlist.html"> 4 </a>&nbsp;
+<a href="boardlist.html"> 5 </a>&nbsp;
+</div>
+</body>
+</html>
+<!-- 
+h1 제목 가로 크기 400px 파랑색 경계 실선, 글씨 녹색,가로 중앙 정렬
+table 가로 중앙 정렬, 글씨들 중앙정렬, 경계선 실선 pink
+제목들 마우스 오버시 글씨색상 빨강, 20PX , 포인터 다른것 변경
+페이지번호 제목, 페이지번호들 화면 가로 중앙 정렬
+DIV, SPAN 태그
+ -->
