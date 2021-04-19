@@ -1,4 +1,4 @@
-package mybatis;
+package spring_mybatis;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,33 +6,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class EmpMain {
 
 	public static void main(String[] args) throws IOException{		
-		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-		SqlSessionFactory factory = builder.build(Resources.getResourceAsReader("mybatis/db-config.xml"));
-		SqlSession session = factory.openSession(true); // true - 자동커밋
-
-		EmpService service = new EmpServiceImpl();
-		EmpDAO dao = new EmpDAO();
-		dao.setSession(session);
-		((EmpServiceImpl)service).setDao(dao);
+		//팩토리의 정보는 mybatis_spring.xml에있다
+		ApplicationContext factory = new ClassPathXmlApplicationContext("spring_mybatis/mybatis_spring.xml");
+//		SqlSession session = factory.getBean("sqlSession", SqlSession.class); // 팩토리에서 빈얻어오기(sqlSession)
+		EmpService service = factory.getBean("service", EmpService.class);
+		
+		
+		
+//		EmpService service = new EmpServiceImpl();
+		//dao에서는 Autowired를 사용했기때문에 아래의 2줄은 필요가없다
+		//EmpDAO dao = new EmpDAO();
+		//dao.setSession(session);
+		//((EmpServiceImpl)service).setDao(dao);
 		//EmpVO vo = service.getOneEmp(200);
 		//System.out.println(vo);
 		//service.getOneEmp(100); //100번 id조회
 		
-		/*List<EmpVO>list = service.getAllEmp();
+		List<EmpVO>list = service.getAllEmp();
 		int i = 0;
 		for(EmpVO vo : list) { //EmpVO여러개리턴
 			System.out.print(i+" ");
 			System.out.println(vo);
 			i++;
-		}*/
+		}
 		
 		/*EmpVO vo = new EmpVO(300,"사원", "김", "kim@a.com", "01012344321", "IT_PROG", 100, 30000, 50);
 		service.insertEmp(vo); //DB에 저장

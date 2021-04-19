@@ -24,6 +24,9 @@
 	
 	<!-- 어노테이션 -->
 	<context:component-scan base-package="multi.campus.spring" />
+	<context:component-scan base-package="spring_mybatis" />
+	<context:component-scan base-package="upload" />
+	<context:component-scan base-package="ajax" />
 	
 	<beans:bean id="HelloController" class="multi.campus.spring.HelloController"/>
 	<!-- <beans:bean id="HelloController2" class="multi.campus.spring.HelloController"/>-->
@@ -37,5 +40,6 @@
 		</beans:property>
 	</beans:bean>
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 </beans:beans>
