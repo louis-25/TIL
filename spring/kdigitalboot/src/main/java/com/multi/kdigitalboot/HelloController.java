@@ -1,0 +1,17 @@
+package com.multi.kdigitalboot;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HelloController {
+	@RequestMapping("/hello.boot")
+	public ModelAndView hello() {
+		
+		ModelAndView m = new ModelAndView();
+		m.addObject("model","Hello boot~");
+		m.setViewName("hello");
+		return m;
+	}
+}
