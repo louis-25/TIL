@@ -36,6 +36,22 @@ enterprise / standard edition 등은 유료로 사용가능
 
 
 
+## 사용자 정의
+
+conn system/1234 
+
+create user jdbc identified by jdbc
+
+시스템계정에 접근해야 권한을 설정해줄 수 있다
+
+grant resource, connect to jdbc
+
+—> jdbc계정에 자원접근권한을 부여함
+
+conn jdbc/jdbc
+
+<br>
+
 ## SELECT 문법
 
 여기서 설명하는 모든 예제는 오라클에서 기본제공하는 hr테이블을 사용한다
