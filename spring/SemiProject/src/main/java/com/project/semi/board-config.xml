@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.project.semi.BoardDTO" alias="board"/>
 		<typeAlias type="com.project.semi.BoardPageDTO" alias="pageDTO"/>
+		<typeAlias type="com.project.semi.MemberDTO" alias="memberDTO"/>
 	</typeAliases>
 </configuration>	
 

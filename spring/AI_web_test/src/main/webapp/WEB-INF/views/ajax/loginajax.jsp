@@ -17,8 +17,8 @@ $(document).ready(function(){
       type: 'post',
       dataType:'json',
       ///서버로 전송
-      success: function(server){
-         alert("Data: "+server.id+"님 login ok"+"\nStatus: success");         
+      success: function(dto){
+         alert("Data: "+dto.id+"님 login ok"+"\nStatus: success");         
       }
       
       });   //ajax 요청함수      

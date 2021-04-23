@@ -151,7 +151,7 @@
 
       <!-- docBase : mvc 프로젝트명 -->
       <Context docBase="spring" path="/spring" reloadable="true" source="org.eclipse.jst.jee.server:spring"/>
-      <Context docBase="mytest" path="/mvc" reloadable="true" source="org.eclipse.jst.jee.server:mytest"/><Context docBase="AI_web_test" path="/test" reloadable="true" source="org.eclipse.jst.jee.server:AI_web_test"/></Host>
+      <Context docBase="mytest" path="/mvc" reloadable="true" source="org.eclipse.jst.jee.server:mytest"/><Context docBase="AI_web_test" path="/test" reloadable="true" source="org.eclipse.jst.jee.server:AI_web_test"/><Context docBase="SemiProject" path="/semi" reloadable="true" source="org.eclipse.jst.jee.server:SemiProject"/></Host>
     </Engine>
   </Service>
 </Server>

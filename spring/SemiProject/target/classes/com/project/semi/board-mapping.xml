@@ -7,6 +7,10 @@
 	select * from board
 </select>
 
+<select id="getMember" resultType="memberDTO">
+	select * from member
+</select>
+
 <select id="member" resultType="board">
 	select id, password from board
 </select>
@@ -26,13 +30,23 @@
 	where r between #{pageNum} and #{cntPerPage}
 </select>
 
+<insert id="insert_content" parameterType="board">
+	insert into board (seq, title, contents, writer, password, viewcount) 
+	values(board_seq.nextval, #{title}, #{contents}, #{writer}, 1234, 0)
+	
+</insert>
+
+<insert id="member_register" parameterType="memberDTO">
+	insert into member values(#{id}, #{password}, #{name})
+</insert>
+
 <update id="count" parameterType="int">
 update board set viewcount = viewcount+1 where seq = #{seq}
 </update>
 
-<update id="delete" parameterType="int">
-delete board where seq = #{seq}
-</update>
+<delete id="delete" parameterType="int">
+delete from board where seq = #{seq}
+</delete>
 </mapper>
 
 

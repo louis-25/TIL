@@ -16,21 +16,45 @@ $(document).ready(function(){
 </head>
 <body width="100%" height="100%">
     <form action="/semi/" method="post" class="loginForm">
-      <h2>Login</h2>
+      <img alt="너굴맨" src="<%=request.getContextPath() %>/resources/img/너굴맨.png" width=40%>
+      <h1>자취꿀팁</h1>
       <div class="idForm">
-        <input type="text" class="id" placeholder="ID">
+        <input type="text" class="id" id=id name="id" placeholder="ID">
       </div>
       <div class="passForm">
-        <input type="password" class="pw" placeholder="PW">
+        <input type="password" class="pw" id=pw name="pw" placeholder="PW">
       </div>
-      <button class="btn" onclick="button()">
-        LOG IN
-      </button>
+      <input type=button id=login class="btn" value="Log IN">
+      <div id =result></div>
+      <br>
+      <a href="register">회원가입</a>
+      
       <script>
-      	let button = () => {//회원인지 판단할것
-        	alert('login Button ');
-        	document.location.href='board/list?page=1';
-        }
+      	
+      	$(document).ready(function(){
+      	   $("#login").on('click',function(){
+      	      //$("#result").html("테스트완료");
+      	      $.ajax({
+      	      url: "<%=request.getContextPath()%>/ajax/login",
+      	      data: {'id':$("#id").val(), 'pw':$("#pw").val()},
+      	      type: 'post',
+      	      dataType:'json',
+      	      ///서버로 전송
+      	      success: function(server){
+      	         
+      	       	 if(server.process == '정상로그인'){
+      	       		alert("로그인되셨습니다");
+      	       		location.href='/semi/board/list?page=1';
+      	         }else{
+      	        	alert("아이디나 비밀번호를 확인하세요");
+      	        	
+      	         }
+      	      }
+      	      
+      	      });   //ajax 요청함수
+      	      
+      	   });//on end
+      	});
       </script>
       
     </form>
