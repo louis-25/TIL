@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_mybatis.EmpDAO"> 
+<!-- EmpDAO만 sql문 호출가능 
+	EmpDAO에는 @Mapper 붙여줘야함
+	EmpDAO의 함수와 mapping의 id값이 같아야한다
+	EmpDAO는 interface처리를 해줘야함
+-->
+
+	<select id="getAllEmp" resultType="empVO">
+		select * from employees
+	</select>
+	
+	<select id="getOneEmp" resultType="empVO" parameterType="int">
+		SELECT * FROM employees WHERE employee_id=#{employee_id}
+	</select>
+	
+	<select id="getPageEmp" resultType="empVO" parameterType="int[]">				
+		select r, employee_id, first_name
+		from (select rownum r, employee_id, first_name, salary		
+			from (select * from employees order by hire_date)
+			)
+		where r between
+		<foreach collection="array" item="page" separator="AND">
+			#{page}
+		</foreach>
+		
+	</select>
+	
+	<select id="checkEmp" parameterType="empVO" resultType="empVO">
+		select employee_id, email from employees
+		where employee_id = #{employee_id} or email = #{email}
+	</select>
+
+	<select id="checkJob" parameterType="empVO" resultType="String">
+		select job_id from jobs where job_id = #{job_id}		
+	</select>
+
+	<insert id="insertEmp" parameterType="empVO">
+		insert into employees(employee_id, first_name, last_name, job_id, hire_date)
+		values(#{employee_id}, #{first_name}, #{last_name}, #{email}, #{job_id}, sysdate)
+	</insert>	
+	
+	
+	<!-- <select id="manyEmp" resultType="empVO">
+	id가 200보다 낮은사람 조회
+	<![CDATA[SELECT * FROM employees WHERE employee_id < 200]]>
+	</select>
+
+	<insert id="insertEmp" parameterType="empVO">
+		INSERT INTO employees VALUES(
+			#{employee_id},#{first_name},#{last_name},
+			#{email},#{phone_number},SYSDATE,
+			#{job_id},#{salary},null,#{manager_id},
+			#{department_id}
+		)
+	</insert>
+
+	<update id="updateEmp" parameterType="empVO">
+		UPDATE employees
+		SET first_name=#{first_name}
+		WHERE employee_id=#{employee_id}
+	</update>
+	
+	<delete id="deleteEmp" parameterType="int">
+		DELETE FROM employees WHERE employee_id=#{employee_id}
+	</delete>
+	
+	페이지처리
+	<select id="pageEmp" resultType="empVO" parameterType="int[]">
+		SELECT r, employee_id, first_name
+		FROM (SELECT ROWNUM r, employee_id, first_name
+			FROM (SELECT * FROM employees ORDER BY hire_date DESC)
+			)
+		WHERE r BETWEEN
+		<foreach collection="array" item="num" separator="AND">
+			#{num}
+		</foreach>
+	</select>
+	
+	<insert id="insertEmp2" parameterType="empVO">
+		<selectKey resultType="int" keyProperty="employee_id">
+			SELECT emp_seq.nextval FROM dual; 시퀸스가 없으면 생성해라
+		</selectKey>
+		INSERT INTO employees VALUES (
+			#{employee_id},#{first_name},#{last_name},
+			#{email},#{phone_number},SYSDATE,#{job_id},
+			#{salary},null,#{manager_id},#{department_id}
+		)
+	</insert>
+	
+	부서의 목록을 자바에 리스트로 전달해보자
+	<select id="selectwithlist" parameterType="java.util.List" resultType="empVO">
+		select employee_id, first_name, department_id
+		from employees
+		where department_id in 
+		
+		collection에는 array list map 등이 들어간다
+		<foreach collection="list" item="deptlist" open="(" separator="," close=")"> 
+			#{deptlist}
+		</foreach>		
+	</select>
+	
+	자바에서 파라미터를 받아오자
+	<update id="updatewithmap" parameterType="java.util.Map">
+		update employees
+		set department_id=#{dept}, email=#{email}
+		where employee_id=
+		<if test="id == null">1</if>
+		<if test="id != null">#{id}</if>
+	</update> -->
+	
+</mapper>

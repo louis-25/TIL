@@ -1,7 +1,5 @@
 select * from c_emp;
 
--- board 테이블 -번호 제목 내용 작성자 작성시간 글암호 조회수
---member 테이블 - id, password, name
 create table member(
 id varchar2(30) constraint member_id_pk primary key,
 password number(10),
@@ -9,11 +7,6 @@ name varchar2(30)
 );
 
 insert into member values('semi', 1111, '프로젝트');
-insert into member values('oracle', 1111, '김회원');
-insert into member values('java', 1111, '박신입');
-insert into member values('spring', 1111, '홍회원');
-insert into member values('jdbc', 1111, '최회원');
-insert into member values('python', 1111, '이회원');
 
 select * from member;
 
