@@ -14,8 +14,16 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1>hello.jsp실행중입니다.</h1>
-<h3>이미지 출력</h3>
-<img src="/upload/cappuccino.jpg">
+<h1>업로드 파일 목록은 다음과 같습니다.</h1>
+<%
+String[] details = (String[])request.getAttribute("details");
+for(String one : details){
+%>
+<a href="/downloadresult?file=<%=one%>"><%=one%>파일 다운로드</a><br>
+<% 
+}
+%>
+
+<a href="filedownload?filename=">파일이름</a>
 </body>
 </html>

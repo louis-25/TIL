@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_mybatis.EmpDAO"> 
+<!-- EmpDAO만 sql문 호출가능 
+	EmpDAO에는 @Mapper 붙여줘야함
+	EmpDAO의 함수와 mapping의 id값이 같아야한다
+	EmpDAO는 interface처리를 해줘야함
+-->
+
+	<select id="getAllEmp" resultType="empVO">
+		SELECT * FROM employees
+	</select>
+	
+	<select id="getOneEmp" resultType="empVO" parameterType="int">
+		SELECT * FROM employees WHERE employee_id=#{employee_id}
+	</select>
+	
+	<select id="getPageEmp" resultType="empVO" parameterType="int[]">				
+		select r, employee_id, first_name
+		from (select rownum r, employee_id, first_name, salary		
+			from (select * from employees order by hire_date)
+			)
+		where r between
+		<foreach collection="array" item="page" separator="AND">
+			#{page}
+		</foreach>
+		
+	</select>
+	
+	<select id="checkEmp" parameterType="empVO" resultType="empVO">
+		select employee_id, email from employees
+		where employee_id = #{employee_id} or email = #{email}
+	</select>
+
+	<select id="checkJob" parameterType="empVO" resultType="String">
+		select job_id from jobs where job_id = #{job_id}		
+	</select>
+
+	<insert id="insertEmp" parameterType="empVO">
+		insert into employees(employee_id, first_name, last_name, job_id, hire_date)
+		values(#{employee_id}, #{first_name}, #{last_name}, #{email}, #{job_id}, sysdate)
+	</insert>	
+	
+</mapper>

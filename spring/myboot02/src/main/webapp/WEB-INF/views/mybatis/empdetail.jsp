@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/static/jquery-3.2.1.min.js"></script>
+<script src="jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
 	
@@ -14,8 +14,9 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1>hello.jsp실행중입니다.</h1>
-<h3>이미지 출력</h3>
-<img src="/upload/cappuccino.jpg">
+<h1>${empdetail.employee_id} 사원 정보를 출력합니다.</h1>
+<table border=3>
+		<tr><td>${empdetail}</td></tr>
+</table>
 </body>
 </html>

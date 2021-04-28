@@ -9,7 +9,7 @@ import spring_mybatis.EmpController;
 import spring_mybatis.EmpDAO;
 
 //부트 시작클래스를 알리는 어노테이션
-@SpringBootApplication
+@SpringBootApplication 
 //spring_mybatis의 내용도 읽어들인다
 @ComponentScan//(basePackageClasses = EmpController.class) 
 @ComponentScan(basePackageClasses = EmpController.class)

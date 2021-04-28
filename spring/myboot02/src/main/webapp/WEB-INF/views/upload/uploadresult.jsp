@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/static/jquery-3.2.1.min.js"></script>
+<script src="jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
 	
@@ -14,8 +14,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1>hello.jsp실행중입니다.</h1>
-<h3>이미지 출력</h3>
-<img src="/upload/cappuccino.jpg">
+<h1>${vo.file1.originalFilename}파일과
+${vo.file2.originalFilename}파일을 전송하셨습니다
+</h1>
 </body>
 </html>

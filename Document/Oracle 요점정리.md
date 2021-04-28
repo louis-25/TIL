@@ -52,6 +52,32 @@ conn jdbc/jdbc
 
 <br>
 
+
+
+## Sequence
+
+```sql
+CREATE SEQUENCE board_seq --시퀀스이름 board_seq
+INCREMENT BY 1 --증감숫자 1
+START WITH 1 --시작숫자 1
+MINVALUE 1 --최소값 1
+MAXVALUE 1000 --최대값 1000
+NOCYCLE --순한하지않음
+CACHE; --메모리에 시퀀스값 미리할당
+```
+
+```sql
+insert into board(seq) values(board_seq) -- 시퀸스 활용법
+```
+
+```sql
+SELECT board_seq.CURRVAL FROM DUAL --해당 시퀀스 값 조회
+SELECT * FROM USER_SEQUENCES  --전체 시퀀스 조회
+DROP SEQUENCE board_seq -- 시퀸스 삭제
+```
+
+
+
 ## SELECT 문법
 
 여기서 설명하는 모든 예제는 오라클에서 기본제공하는 hr테이블을 사용한다

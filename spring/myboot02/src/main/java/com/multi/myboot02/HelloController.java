@@ -1,4 +1,4 @@
-package com.multi.myboot01;
+package com.multi.myboot02;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
