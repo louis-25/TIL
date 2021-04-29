@@ -273,3 +273,140 @@ dynamic_message("python", "java", "spring");
     
 ```
 
+<br>
+
+## 람다식
+
+```python
+print((lambda : 0)())
+
+print((lambda x : x*x)(10))
+
+print((lambda x,y : (x+y, x-y, x*y, x/y))(10,2))
+```
+
+
+
+## 모듈
+
+```python
+#모듈에 별칭을 줄 수 있다
+import math as ma
+ma.trunc(3.14)
+
+import random
+print(random.randint(1,100))
+print(random.randrange(1,101))
+name_list=["abcde","가나다라", "ab가나","xyz"]
+print(random.choice(name_list))
+print(name_list)
+print(random.sample(name_list,2))
+
+import sys
+print(sys.version)#파이썬버전
+print(sys.getwindowsversion())
+print(sys.path)# 내장모듈 + 사용자모듈 + 외부설치 추가모듈 저장경로
+
+import os
+print(os.name)
+print(os.getcwd()) #현재폴더의 경로명
+print(os.listdir()) #현재폴더 파일명
+
+import datetime
+now = datetime.datetime.now()
+print(now.year)
+print(now.month)
+print(now.day)
+print(now.hour)
+print(now.minute)
+print(now.second)
+```
+
+<br>
+
+## 웹크롤링
+
+```python
+import urllib.request as req
+from bs4 import BeautifulSoup as bs
+response = req.urlopen("http://127.0.0.1:9091/")
+soup = bs(response, "html.parser")
+#전체 내용 출력
+rescontents = soup.prettify();
+print(rescontents);
+
+#h3 태그
+print(soup.find("h3")); #type-dict 
+print(soup.find("img")['src']);
+
+for h3 in soup.findAll("h3"): #h3태그 모두 가져오기
+    print(h3.string)
+#rescontents = response.read()
+#print(rescontents)
+response.close();
+```
+
+<br>
+
+## 에러처리
+
+```python
+try:
+    money = input("대출금액 상황개월수 입력하세요:");
+    two_items = money.split();
+    loan = int(two_items[0]);
+    payback = int(two_items[1]);
+    if payback <= 0:#의도적 에러메세지 발생
+        raise ValueError("상환개월은 음수값을 입력할 수 없습니다")
+except IndexError:
+    print("대출금액이나 개월수 입력 확인하세요 ")
+except ValueError as ve:
+    print(ve)
+else: # 아무런 오류없이 정상 실행됐을때
+    monthly_return = loan / payback;
+    print(monthly_return , " 을 매달 상환해야 합니다")
+finally: #예외가 발생하던 말던 무조건 실행
+    print("영업종료 ")
+```
+
+<br>
+
+## 파일입출력
+
+```python
+import os
+print(os.getcwd())
+print(os.listdir())
+
+try:
+    file=open("test.py","r",encoding="utf-8")
+    print(file.read())
+except FileNotFoundError:
+    print("a.txt파일 없어요")
+file.close();
+
+file2 = open("a.txt","a") #파일없으면 새로 생성/ 파일 있으면 기존 내용 뒤에 추가 쓰기
+file2.write("\n새로운 파일을 생성합니다");
+file2.close()
+
+#파일 한라인씩 읽어서 리스트에 저장
+file_list = list()
+file3 = open("moduletest.py", "r", encoding="UTF-8")
+for line in file3:
+    file_list.append(line);
+file3.close();
+
+num = 1;
+for line in file_list:
+    print(num,line)
+    num+=1
+
+#읽은내용 다시 파일에 저장
+file4 = open("copy.txt", "w");
+
+for index in range(0, len(file_list), 1):
+    line = str(index+1) + " 번 라인 : "+file_list[index];
+    file4.write(line);
+file4.close();
+```
+

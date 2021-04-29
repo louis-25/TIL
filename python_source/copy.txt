@@ -1,0 +1,92 @@
+1 번 라인 : #module
+2 번 라인 : 
+3 번 라인 : import random
+4 번 라인 : import math
+5 번 라인 : import time
+6 번 라인 : import sys
+7 번 라인 : 
+8 번 라인 : random.randint(1,10)
+9 번 라인 : math.trunc(3.14)
+10 번 라인 : #time.sleep(5)
+11 번 라인 : print(sys.argv)
+12 번 라인 : 
+13 번 라인 : #모듈에 별칭을 줄 수 있다
+14 번 라인 : import math as ma
+15 번 라인 : ma.trunc(3.14)
+16 번 라인 : 
+17 번 라인 : import random
+18 번 라인 : print(random.randint(1,100))
+19 번 라인 : print(random.randrange(1,101))
+20 번 라인 : name_list=["abcde","가나다라", "ab가나","xyz"]
+21 번 라인 : print(random.choice(name_list))
+22 번 라인 : print(name_list)
+23 번 라인 : print(random.sample(name_list,2))
+24 번 라인 : 
+25 번 라인 : import sys
+26 번 라인 : print(sys.version)#파이썬버전
+27 번 라인 : print(sys.getwindowsversion())
+28 번 라인 : print(sys.path)# 내장모듈 + 사용자모듈 + 외부설치 추가모듈 저장경로
+29 번 라인 : 
+30 번 라인 : import os
+31 번 라인 : print(os.name)
+32 번 라인 : print(os.getcwd()) #현재폴더의 경로명
+33 번 라인 : print(os.listdir()) #현재폴더 파일명
+34 번 라인 : 
+35 번 라인 : import datetime
+36 번 라인 : now = datetime.datetime.now()
+37 번 라인 : print(now.year)
+38 번 라인 : print(now.month)
+39 번 라인 : print(now.day)
+40 번 라인 : print(now.hour)
+41 번 라인 : print(now.minute)
+42 번 라인 : print(now.second)
+43 번 라인 : 
+44 번 라인 : #현재로부터 1년뒤
+45 번 라인 : after_year = now.replace(year=(now.year+1))
+46 번 라인 : 
+47 번 라인 : # pypi.org사이트 검색 - 설치명령어 복사
+48 번 라인 : # pip install beautifulsoup4
+49 번 라인 : # pip list -> 현재 설치된 pip모듈확인
+50 번 라인 : # pip show beautifulsoup4 - location정보
+51 번 라인 : 
+52 번 라인 : import urllib.request as req
+53 번 라인 : from bs4 import BeautifulSoup as bs
+54 번 라인 : response = req.urlopen("http://127.0.0.1:9091/")
+55 번 라인 : soup = bs(response, "html.parser")
+56 번 라인 : #전체 내용 출력
+57 번 라인 : rescontents = soup.prettify();
+58 번 라인 : print(rescontents);
+59 번 라인 : 
+60 번 라인 : #h3 태그
+61 번 라인 : print(soup.find("h3")); #type-dict 
+62 번 라인 : print(soup.find("img")['src']);
+63 번 라인 : 
+64 번 라인 : for h3 in soup.findAll("h3"): #h3태그 모두 가져오기
+65 번 라인 :     print(h3.string)
+66 번 라인 : #rescontents = response.read()
+67 번 라인 : #print(rescontents)
+68 번 라인 : response.close();
+69 번 라인 : 
+70 번 라인 : #에러처리
+71 번 라인 : try:
+72 번 라인 :     money = input("대출금액 상황개월수 입력하세요:");
+73 번 라인 :     two_items = money.split();
+74 번 라인 :     loan = int(two_items[0]);
+75 번 라인 :     payback = int(two_items[1]);
+76 번 라인 :     if payback <= 0:#의도적 에러메세지 발생
+77 번 라인 :         raise ValueError("상환개월은 음수값을 입력할 수 없습니다")
+78 번 라인 : except IndexError:
+79 번 라인 :     print("대출금액이나 개월수 입력 확인하세요 ")
+80 번 라인 : except ValueError as ve:
+81 번 라인 :     print(ve)
+82 번 라인 : else: # 아무런 오류없이 정상 실행됐을때
+83 번 라인 :     monthly_return = loan / payback;
+84 번 라인 :     print(monthly_return , " 을 매달 상환해야 합니다")
+85 번 라인 : finally: #예외가 발생하던 말던 무조건 실행
+86 번 라인 :     print("영업종료 ")
+87 번 라인 : 
+88 번 라인 : 
+89 번 라인 : 
+90 번 라인 : 
+91 번 라인 : 
+92 번 라인 : 
