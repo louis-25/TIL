@@ -324,52 +324,7 @@ print(now.second)
 
 <br>
 
-## 웹크롤링
 
-```python
-import urllib.request as req
-from bs4 import BeautifulSoup as bs
-response = req.urlopen("http://127.0.0.1:9091/")
-soup = bs(response, "html.parser")
-#전체 내용 출력
-rescontents = soup.prettify();
-print(rescontents);
-
-#h3 태그
-print(soup.find("h3")); #type-dict 
-print(soup.find("img")['src']);
-
-for h3 in soup.findAll("h3"): #h3태그 모두 가져오기
-    print(h3.string)
-#rescontents = response.read()
-#print(rescontents)
-response.close();
-```
-
-<br>
-
-## 에러처리
-
-```python
-try:
-    money = input("대출금액 상황개월수 입력하세요:");
-    two_items = money.split();
-    loan = int(two_items[0]);
-    payback = int(two_items[1]);
-    if payback <= 0:#의도적 에러메세지 발생
-        raise ValueError("상환개월은 음수값을 입력할 수 없습니다")
-except IndexError:
-    print("대출금액이나 개월수 입력 확인하세요 ")
-except ValueError as ve:
-    print(ve)
-else: # 아무런 오류없이 정상 실행됐을때
-    monthly_return = loan / payback;
-    print(monthly_return , " 을 매달 상환해야 합니다")
-finally: #예외가 발생하던 말던 무조건 실행
-    print("영업종료 ")
-```
-
-<br>
 
 ## 파일입출력
 
@@ -409,4 +364,248 @@ for index in range(0, len(file_list), 1):
     file4.write(line);
 file4.close();
 ```
+
+<br>
+
+## CSV파일읽기
+
+```python
+#usedcards.csv
+#마일리지 10000 이상 ~ 20000미만 -> "심각한중고" 10000미만 -> "양호한중고"
+import csv
+import os
+print(os.getcwd())
+print(os.listdir())
+
+file_list = list()
+file = open("usedcars.csv", "r", encoding="UTF-8")
+#file.read()
+for line in file:
+    line_list = line.split(",")
+    year = line_list[0]
+    model = line_list[1]
+    price = line_list[2]
+    mile = line_list[3]
+    color = line_list[4]
+    trans = line_list[5]
+    #isdigit = 숫자인지 판별
+    if mile.isdigit() and int(mile) >= 20000:
+        line_list.append("폐차직전")
+    elif mile.isdigit() and int(mile) >= 10000 and int(mile) < 20000:
+        line_list.append("심각한 중고")
+    else :
+        line_list.append("양호한 중고")
+    print(line_list)
+file.close();
+
+
+```
+
+csv파일 읽어와서 그래프로 표현하기
+
+```python
+#usedcards.csv
+#마일리지 10000 이상 ~ 20000미만 -> "심각한중고" 10000미만 -> "양호한중고"
+import csv
+import os
+print(os.getcwd())
+print(os.listdir())
+
+file_list = list()
+file = open("usedcars.csv", "r", encoding="UTF-8")
+#file.read()
+count = {"폐차직전":0, "심각한중고":0, "양호한중고":0}
+for line in file:
+    line_list = line.split(",")
+    year = line_list[0]
+    model = line_list[1]
+    price = line_list[2]
+    mile = line_list[3]
+    color = line_list[4]
+    trans = line_list[5]
+    #isdigit = 숫자인지 판별
+    if mile.isdigit() and int(mile) >= 20000:
+        line_list.append("폐차직전")
+        count["폐차직전"] += 1
+    elif mile.isdigit() and int(mile) >= 10000 and int(mile) < 20000:
+        line_list.append("심각한 중고")
+        count["심각한중고"] += 1
+    else :
+        line_list.append("양호한 중고")
+        count["양호한중고"] += 1
+    print(line_list)
+print(count)
+file.close();
+
+import matplotlib.pyplot as plt
+#글꼴 세팅
+plt.rcParams["font.family"] = "Batang";
+plt.rcParams["font.size"] = 10;
+plt.rcParams["figure.figsize"] = (10, 6);
+
+plt.rcParams["xtick.labelsize"] =8
+plt.rcParams["axes.labelsize"] =10
+plt.rcParams["lines.linewidth"] =3
+plt.rcParams["lines.linestyle"] ='-.'
+plt.rcParams["axes.grid"] =True
+
+x = list(count)
+y = list(count.values())
+plt.plot(x, y)
+plt.title("중고차")
+plt.xlabel("차량상태")
+plt.ylabel("개수")
+plt.show()
+```
+
+<br>
+
+## 웹크롤링
+
+```python
+import urllib.request as req
+from bs4 import BeautifulSoup as bs
+response = req.urlopen("http://127.0.0.1:9091/")
+soup = bs(response, "html.parser")
+#전체 내용 출력
+rescontents = soup.prettify();
+print(rescontents);
+
+#h3 태그
+print(soup.find("h3")); #type-dict 
+print(soup.find("img")['src']);
+
+for h3 in soup.findAll("h3"): #h3태그 모두 가져오기
+    print(h3.string)
+#rescontents = response.read()
+#print(rescontents)
+response.close();
+```
+
+**기상청 API 크롤링 및 그래프표현**
+
+```python
+#접속해서 모든태그 출력
+#https://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109
+
+import urllib.request as req
+from bs4 import BeautifulSoup as bs
+#import bs4.BeautifulSoup as bs
+
+response = req.urlopen("https://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109")
+soup = bs(response, "html.parser")
+
+#전체 내용 출력
+
+city_list = []
+tmx_list = []
+tmn_list = []
+for loc in soup.select("location"):#41번
+    print("--------------------------------------")
+    print("도시:", loc.select_one("city").string);
+    print("시간:", loc.select_one("tmEf").string);
+    print("날씨상황:", loc.select_one("wf").string);
+    print("최고기온:", loc.select_one("tmx").string);
+    print("최저기온:", loc.select_one("tmn").string);
+    print("--------------------------------------")
+    city_list.append(loc.select_one("city").string)
+    tmx_list.append(loc.select_one("tmx").string)
+    tmn_list.append(loc.select_one("tmn").string)
+
+tmx_list = list(map(int ,tmx_list)) #tmx_list의 데이터를 int형으로 바꿔줌
+tmx_list = list(map(int ,tmn_list))
+#그래프 설정
+#컴퓨터 설치 사용 글꼴 정보
+import matplotlib.font_manager as fm
+
+fname_list = []
+for f in fm.fontManager.ttflist:
+    fname_list.append(f.name)
+    print(f.name)
+
+fname_list.sort()
+for name in fname_list:
+    print(name)
+
+
+import matplotlib.pyplot as plt
+#글꼴 세팅
+plt.rcParams["font.family"] = "Batang";
+plt.rcParams["font.size"] = 10;
+plt.rcParams["figure.figsize"] = (10, 6);
+
+plt.rcParams["xtick.labelsize"] =8
+plt.rcParams["axes.labelsize"] =10
+plt.rcParams["lines.linewidth"] =3
+plt.rcParams["lines.linestyle"] ='-.'
+plt.rcParams["axes.grid"] =True
+
+plt.plot(city_list, tmx_list)
+plt.title("도시별 최고기온")
+plt.xlabel("도시명")
+plt.ylabel("max")
+plt.show()
+
+# 1개 그래프에 도시별 최고기온과 최저기온 동시에 표현
+plt.subplots()
+plt.plot(city_list, tmx_list)
+plt.plot(city_list, tmn_list)
+plt.savefig("weather.png")
+plt.show()
+```
+
+
+
+<br>
+
+## 에러처리
+
+```python
+try:
+    money = input("대출금액 상황개월수 입력하세요:");
+    two_items = money.split();
+    loan = int(two_items[0]);
+    payback = int(two_items[1]);
+    if payback <= 0:#의도적 에러메세지 발생
+        raise ValueError("상환개월은 음수값을 입력할 수 없습니다")
+except IndexError:
+    print("대출금액이나 개월수 입력 확인하세요 ")
+except ValueError as ve:
+    print(ve)
+else: # 아무런 오류없이 정상 실행됐을때
+    monthly_return = loan / payback;
+    print(monthly_return , " 을 매달 상환해야 합니다")
+finally: #예외가 발생하던 말던 무조건 실행
+    print("영업종료 ")
+```
+
+<br>
+
+## Jupyter notebook
+
+anaconda3는 다양한 파이썬 라이브러리를 포함하고있어 나름? 편리하고
+
+jupyter notebook이라는 편리한 파이썬 편집기를 내장하고있다
+
+anaconda3 설치 후
+
+anaconda3 프롬프트 실행 -> jupyter notebook 실행가능
+
+
+
+**jupyter notebook 시작폴더경로 바꿔주기**
+
+프롬프트에서 jupyter notebook --generate-config
+
+C:\Users\정동현\.jupyter에서 config파일 파이썬편집기로 열기
+
+c.NotebookApp.notebook_dir = '' -> 주석풀고 경로입력
+
+
+
+jupyter notebook 명령어
+
+
+
+!pip install 모듈명 --> !가 붙으면 시스템명령어로 인식
 
