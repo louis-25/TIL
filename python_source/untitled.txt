@@ -1,0 +1,6 @@
+import matplotlib.pylot as plt
+%matploylib inline
+plt.plot(a,b)
+plt.plot(a,b)
+
+!pip install

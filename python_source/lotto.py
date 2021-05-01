@@ -49,3 +49,6 @@ for i in range(0, len(a), 1):
 d = {"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}
 for key, value in d.items():
     print("{}키의 값은 {}입니다".format(key, value))
+
+
+    
