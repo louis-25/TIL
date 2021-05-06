@@ -554,7 +554,74 @@ plt.savefig("weather.png")
 plt.show()
 ```
 
+<br>
 
+## raspberryPi - Spring Boot 파일공유
+
+1. Spring Boot에서 파일 업로드를 구현 (~/fileupload)
+2. 서버의 ip주소를 알아낸다
+3. 파이썬에서 스프링에 requests.post요청으로 각종데이터 전송
+4. 서버에 파일이 잘 도착했는지 확인
+
+**Spring 코드**
+
+```java
+@RequestMapping(value="/fileupload", method=RequestMethod.POST)
+	@ResponseBody //ResponseBody를 붙이면 뷰가 아니고 결과물이된다
+	public String uploadresult(@ModelAttribute("vo") UploadVO vo) throws IOException{
+		
+		//업로드한 파일 객체
+		MultipartFile multipartfile1 = vo.getFile1();
+		MultipartFile multipartfile2 = vo.getFile2();
+		
+		System.out.println(multipartfile1.getOriginalFilename());
+		
+		//업로드한 파일명 추출
+		String filename1 = multipartfile1.getOriginalFilename();
+		String filename2 = multipartfile2.getOriginalFilename();
+		//서버 저장 경로 설정
+		String savePath = "c:/upload/";
+		
+		//서버저장파일명(클라이언트원본파일명.확장자)
+		
+		// 중복파일처리1 : 
+		// api : 랜덤암호화변경이름
+		// a.txt --> 123wsdjhfckdjf.txt
+		String ext1 = filename1.substring(filename1.lastIndexOf("."));
+		String ext2 = filename2.substring(filename2.lastIndexOf("."));	
+		
+		System.out.println(ext1+":"+ext2);
+		filename1 = getUuid() +"("+multipartfile1.getOriginalFilename()+")"+ ext1;
+		filename2 = getUuid() +"("+multipartfile2.getOriginalFilename()+")"+ ext2;
+
+		File file1 = new File(savePath + filename1);
+		File file2 = new File(savePath + filename2);
+		//서버 저장
+		multipartfile1.transferTo(file1);
+		multipartfile2.transferTo(file2);
+		
+		return "/upload/uploadresult";
+	}
+```
+
+**raspberryPi - python 코드**
+
+```python
+def result_server_test(): 
+	# http://192.168.1.3:9091/fileupload - post
+	# result.txt, response.png 파일 업로드
+	# 터미널 pip3 install requests
+	# import requests
+	# graph.py 파일 그래프-서버 전송 구현
+	textfile = open("result.txt", 'r')
+	graphfile = open("response.png", 'rb') # 이미지파일은 바이너리로 읽어야해서 rb옵션
+	
+	response = requests.post("http://192.168.1.3:9091/fileupload", 
+		data= {"name": "라즈베리", "description": "uploadtest"}, 
+		files= {"file1": textfile, "file2": graphfile})
+	print(response.status_code)
+	print(response.text)
+```
 
 <br>
 

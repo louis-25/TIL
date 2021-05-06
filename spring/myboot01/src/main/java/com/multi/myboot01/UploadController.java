@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 //<context:component-scan base-pakage="upload"
@@ -23,6 +24,7 @@ public class UploadController {
 	}
 	
 	@RequestMapping(value="/fileupload", method=RequestMethod.POST)
+	@ResponseBody //ResponseBody를 붙이면 뷰가 아니고 결과물이된다
 	public String uploadresult(@ModelAttribute("vo") UploadVO vo) throws IOException{
 		
 		//업로드한 파일 객체
