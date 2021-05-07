@@ -8,15 +8,15 @@
 	EmpDAO는 interface처리를 해줘야함
 -->
 
-	<select id="getAllEmp" resultType="empVO">
-		select * from employees
-	</select>
-	
 	<select id="getOneEmp" resultType="empVO" parameterType="int">
 		SELECT * FROM employees WHERE employee_id=#{employee_id}
 	</select>
+
+	<select id="getAllEmp" resultType="empVO">
+		select * from employees
+	</select>	
 	
-	<select id="getPageEmp" resultType="empVO" parameterType="int[]">				
+	<select id="getPageEmp" parameterType="int[]" resultType="empVO">				
 		select r, employee_id, first_name
 		from (select rownum r, employee_id, first_name, salary		
 			from (select * from employees order by hire_date)

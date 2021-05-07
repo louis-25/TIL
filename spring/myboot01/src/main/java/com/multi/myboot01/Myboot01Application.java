@@ -8,10 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 import spring_mybatis.EmpController;
 import spring_mybatis.EmpDAO;
 
-//부트 시작클래스를 알리는 어노테이션
-@SpringBootApplication 
+ 
 //spring_mybatis의 내용도 읽어들인다
-@ComponentScan//(basePackageClasses = EmpController.class) 
+//@ComponentScan//(basePackageClasses = EmpController.class)
+//부트 시작클래스를 알리는 어노테이션
+@SpringBootApplication
 @ComponentScan(basePackageClasses = EmpController.class)
 @MapperScan(basePackageClasses = EmpDAO.class) // EmpDAO매퍼를 읽어온다
 public class Myboot01Application {

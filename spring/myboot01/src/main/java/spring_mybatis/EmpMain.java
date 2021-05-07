@@ -1,12 +1,12 @@
 package spring_mybatis;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.session.SqlSession;
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,8 +18,8 @@ public class EmpMain {
 //		SqlSession session = factory.getBean("sqlSession", SqlSession.class); // 팩토리에서 빈얻어오기(sqlSession)
 		EmpService service = factory.getBean("service", EmpService.class);
 		
-		//EmpVO vo = service.getOneEmp(200);
-		//System.out.println(vo);
+		EmpVO vo = service.getOneEmp(200);
+		System.out.println(vo);
 		
 //		EmpService service = new EmpServiceImpl();
 		//dao에서는 Autowired를 사용했기때문에 아래의 2줄은 필요가없다

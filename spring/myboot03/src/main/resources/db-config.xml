@@ -9,14 +9,14 @@
 	별명 : emp 
 	-->
 	<typeAliases>
-		<typeAlias type="spring_mybatis.EmpVO" alias="empVO"/> <!-- EmpVO는 emp로 표현하겠다 -->
+		<typeAlias type="spring_mybatis.EmpVO" alias="empVO"/>
 	</typeAliases> 
-		
-	 <!-- 3. sql mapping 파일 설정 --> 
+	
+	<!--3. sql mapping 파일 설정-->
 	<mappers>
 		<mapper resource = "mybatis/sql-mapping.xml"/>
-	</mappers>
-	
+	</mappers> 
+	 
 </configuration>
 
 
