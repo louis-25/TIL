@@ -6,3 +6,29 @@
 
 <br>
 
+## 문법 정리
+
+<details>
+
+ <summary>Java</summary>
+
+[Context]()
+
+[Cookie]()
+
+[forward]()
+
+[JDBC]()
+
+[JSP]()
+
+[Servlet]()
+
+[Session]()
+
+[Spring Boot]()
+
+</details>
+
+
+
