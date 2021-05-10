@@ -26,7 +26,7 @@ public class TodoService {
 
     public TodoEntity searchById(Long id) {
         this.todoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)); //에러처리
         return null;
     }
 
