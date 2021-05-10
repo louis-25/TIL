@@ -9,8 +9,7 @@
 ## 문법 정리
 
 <details>
-
-###  <summary>Java</summary>
+    <summary>Java</summary>
 
 <br>
 
@@ -35,11 +34,7 @@
 <br>
 
 <details>
-    
-</details>
-
-### <summary>Database</summary>
-
+    <summary>Database</summary>
 <br>
 
 [오라클 요점정리](https://github.com/louis-25/TIL/blob/main/Document/Database/Oracle%20%EC%9A%94%EC%A0%90%EC%A0%95%EB%A6%AC.md)
@@ -49,8 +44,7 @@
 <br>
 
 <details>
-
-### <summary>Python</summary>
+    <summary>Python</summary>
 
 <br>
 
