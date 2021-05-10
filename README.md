@@ -10,25 +10,53 @@
 
 <details>
 
- <summary>Java</summary>
+###  <summary>Java</summary>
 
-[Context]()
+<br>
 
-[Cookie]()
+[Context](https://github.com/louis-25/TIL/blob/main/Document/Java/Context.md)
 
-[forward]()
+[Cookie](https://github.com/louis-25/TIL/blob/main/Document/Java/Cookie.md)
 
-[JDBC]()
+[forward](https://github.com/louis-25/TIL/blob/main/Document/Java/forward.md)
 
-[JSP]()
+[JDBC](https://github.com/louis-25/TIL/blob/main/Document/Java/JDBC.md)
 
-[Servlet]()
+[JSP](https://github.com/louis-25/TIL/blob/main/Document/Java/JSP.md)
 
-[Session]()
+[Servlet](https://github.com/louis-25/TIL/blob/main/Document/Java/Servlet.md)
 
-[Spring Boot]()
+[Session](https://github.com/louis-25/TIL/blob/main/Document/Java/Session.md)
+
+[Spring Boot](https://github.com/louis-25/TIL/blob/main/Document/Java/Spring%20Boot.md)
 
 </details>
 
+<br>
 
+<details>
+    
+</details>
+
+### <summary>Database</summary>
+
+<br>
+
+[오라클 요점정리](https://github.com/louis-25/TIL/blob/main/Document/Database/Oracle%20%EC%9A%94%EC%A0%90%EC%A0%95%EB%A6%AC.md)
+
+</details>
+
+<br>
+
+<details>
+
+### <summary>Python</summary>
+
+<br>
+
+[Python](https://github.com/louis-25/TIL/blob/main/Document/Python/Python.md)
+
+[GIGA Genie](https://github.com/louis-25/TIL/blob/main/Document/Python/GIGA%20Genie.md)
+
+</details>
 
