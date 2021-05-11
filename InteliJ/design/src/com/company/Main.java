@@ -1,21 +1,28 @@
 package com.company;
 
-import com.company.singleton.AClass;
-import com.company.singleton.BClass;
-import com.company.singleton.SocketClient;
+import com.company.adapter.*;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        AClass aClass = new AClass();
-        BClass bClass = new BClass();
+        HairDryer hairDryer = new HairDryer();
+        connect(hairDryer);
 
-        SocketClient aClient = aClass.getSocketClient();
-        SocketClient bClient = aClass.getSocketClient();
+        /*
+        cleaner와 airConditioner는 220v라 110v랑은 호환이안된다
+        하지만 110v로 변환시켜주는 adapter를 통해 타입을 바꿔줄 수 있다
+        */
+        Cleaner cleaner = new Cleaner();
+        Electronic110V adapter = new SocketAdapter(cleaner);
+        connect(adapter);
 
-        System.out.println("두개의 객체가 동일한가?");
-        System.out.println(aClient.equals(bClient));
-
+        AirConditioner airConditioner = new AirConditioner();
+        Electronic110V airAdapter = new SocketAdapter(airConditioner);
+        connect(airAdapter);
+    }
+    // 콘센트
+    public static void connect(Electronic110V electronic110V){
+        electronic110V.powerOn();
     }
 }
+
