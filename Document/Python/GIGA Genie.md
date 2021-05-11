@@ -75,7 +75,7 @@ def getVoice2Text():
 
 ```python
 def getText2VoiceStream(inText,inFileName):
-
+	#입력받은 텍스트를 기반으로 TTS음성을 출력한다    
 	channel = grpc.secure_channel('{}:{}'.format(HOST, PORT), UA.getCredentials())
 	stub = gigagenieRPC_pb2_grpc.GigagenieStub(channel)
 
