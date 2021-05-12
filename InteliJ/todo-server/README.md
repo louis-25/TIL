@@ -2,7 +2,7 @@
 
 <br>
 
-## Gradle세팅
+## Gradle 세팅
 
 plugins와 dependencies를 아래와 같이 세팅
 
@@ -21,6 +21,17 @@ dependencies {
 
     annotationProcessor("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
+}
+```
+
+<br>
+
+## TodoRepository
+
+```java
+@Repository
+public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
+//JpaRepository를 상속하여 구현
 }
 ```
 
