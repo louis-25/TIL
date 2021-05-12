@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//canvas 객체
+window.onload = function() {	
+	let samplecanvas = document.getElementById("samplecanvas"); // 도화지
+	let samplecontext = samplecanvas.getContext("2d"); // 붓 - 2차원적인 그림을 그릴 수 있다
+	/* samplecontext.font = "25px batang";
+	samplecontext.fillStyle="blue";
+	samplecontext.fillText("캔버스위에 글씨를 씁니다.", 100,100);
+	samplecontext.fillRect(280, 200, 100, 50); // x, y, width, height
+	samplecontext.strokeStyle="green";
+	samplecontext.lineWidth = 3;
+	samplecontext.strokeRect(300, 300, 50, 50); */
+	
+	let sampleImage = new Image();
+	sampleImage.src = "/faceimages/song.jpg"; // WebConfig.java에서 경로설정해 놓음
+	sampleImage.onload = function(){//이미지가 로딩될때까지 기다린후 함수실행
+		//이미지 그리기
+		samplecontext.drawImage(sampleImage, 0, 150, sampleImage.width, sampleImage.height); //이미지객체, x, y, w, h
+		
+		let copyImage = samplecontext.getImageData(0, 150, sampleImage.width, sampleImage.height); // 이미지데이터 가져와라	
+		
+		let targetcanvas = document.getElementById("targetcanvas");
+		let targetcontext = targetcanvas.getContext("2d")
+		targetcontext.putImageData(copyImage, 50, 50);
+	}
+	
+	
+}
+</script>
+</head>
+<body>
+<h1>캔버스</h1>
+<canvas id="samplecanvas" width=400 height=400 style="border:solid 2px pink"></canvas>
+<canvas id="targetcanvas" width=400 height=400 style="border:solid 2px pink"></canvas>
+</body>
+</html>
