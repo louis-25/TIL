@@ -17,6 +17,8 @@ public class NaverController {
 	NaverOCRService ocrservice; //이미지에서 텍스트 추출
 	@Autowired
 	NaverObjectDetectionService objectdetectionservice;
+	@Autowired
+	NaverPoseService poseservice; // 포즈 분석
 	
 	@RequestMapping("/faceinput")
 	public ModelAndView faceinput() {
@@ -102,6 +104,27 @@ public class NaverController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("objectdetectionResult", result);
 		mv.setViewName("/naver/objectdetection");
+		return mv;
+	}
+	
+	@RequestMapping("/poseinput")
+	public ModelAndView poseinput() {
+		File f = new File("C:/Users/정동현/Desktop/images");		
+		String[] filelist = f.list();		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("filelist", filelist);
+		mv.setViewName("/naver/poseinput");
+		//faceinput.jsp 구현
+		//filelist 모델값을 <a href="http://127.0.0.1:9091/ocr 호출하면서 파일이름 전달"> 파일이름 </a>
+		return mv;
+	}
+	
+	@RequestMapping(value="/pose", method=RequestMethod.GET)
+	public ModelAndView pose(String image) {//경로없이 파일명만 전달
+		String result = poseservice.test(image); //포즈분석 서비스
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("poseResult", result); //네이버 포즈 인식 결과 json
+		mv.setViewName("/naver/pose");
 		return mv;
 	}
 }

@@ -43,7 +43,7 @@ window.onload = function() {
 
 <img src="/faceimages/<%=image%>"><br>
 <div id="ocrResult">
-inferText 출력하되 lineBreak true 이면 줄바꿈 출력<br>
+<!-- inferText 출력하되 lineBreak true 이면 줄바꿈 출력<br> -->
 </div>
 
 </body>
