@@ -4,26 +4,22 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CSRDemo {
-	public static void main(String[] args) {
+import org.springframework.stereotype.Service;
+
+@Service
+public class NaverSpeechService {
+	
+	public String test(String imgFile, String language) {
+		StringBuffer response = new StringBuffer();
         String clientId = "yheadou32e";             // Application Client ID";
         String clientSecret = "XbBNFTRczDq3nrUDPgyTQN4j4oaZjYEk71uGIAPj";     // Application Client Secret";
 
         try {
-            String imgFile = "C:/Users/정동현/Desktop/images/stt.mp3";
-            String language = "Kor";        // 언어 코드 ( Kor, Jpn, Eng, Chn )
-                                  
-//            String imgFile = "C:/Users/정동현/Desktop/images/news1.mp3";
-//            String language = "Kor";        // 언어 코드 ( Kor, Jpn, Eng, Chn )
-        	
-//        	String imgFile = "C:/Users/정동현/Desktop/images/chn.mp3";
-//            String language = "Chn";        // 언어 코드 ( Kor, Jpn, Eng, Chn )
-            
-//        	String imgFile = "C:/Users/정동현/Desktop/images/eng.mp3";
-//            String language = "Eng";        // 언어 코드 ( Kor, Jpn, Eng, Chn )
+            //String imgFile = "C:/Users/정동현/Desktop/images/stt.mp3";
+            //String language = "Kor";        // 언어 코드 ( Kor, Jpn, Eng, Chn )
             
             String apiURL = "https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang=" + language;
-            File voiceFile = new File(imgFile);
+            File voiceFile = new File("C:/Users/정동현/Desktop/images/"+imgFile);
             URL url = new URL(apiURL);
 
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -36,15 +32,18 @@ public class CSRDemo {
 
             OutputStream outputStream = conn.getOutputStream();
             FileInputStream inputStream = new FileInputStream(voiceFile);
-            byte[] buffer = new byte[4096];
+            byte[] buffer = new byte[4096]; //4K, 60초 재생
             int bytesRead = -1;
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
             outputStream.flush();
             inputStream.close();
+            
             BufferedReader br = null;
             int responseCode = conn.getResponseCode();
+            System.out.println(responseCode);
+            
             if(responseCode == 200) { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else {  // 오류 발생
@@ -52,9 +51,9 @@ public class CSRDemo {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             }
             String inputLine;
-
+            
             if(br != null) {
-                StringBuffer response = new StringBuffer();
+                
                 while ((inputLine = br.readLine()) != null) {
                     response.append(inputLine);
                 }
@@ -66,5 +65,8 @@ public class CSRDemo {
         } catch (Exception e) {
             System.out.println(e);
         }
+        return response.toString();
     }
+
+	
 }

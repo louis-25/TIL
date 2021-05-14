@@ -19,6 +19,11 @@ public class NaverController {
 	NaverObjectDetectionService objectdetectionservice;
 	@Autowired
 	NaverPoseService poseservice; // 포즈 분석
+	@Autowired
+	NaverSpeechService speechservice;
+	
+	@Autowired
+	NaverVoiceService voiceservice;
 	
 	@RequestMapping("/faceinput")
 	public ModelAndView faceinput() {
@@ -125,6 +130,47 @@ public class NaverController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("poseResult", result); //네이버 포즈 인식 결과 json
 		mv.setViewName("/naver/pose");
+		return mv;
+	}
+	
+	@RequestMapping("/speechinput")
+	public ModelAndView speechinput() {
+		File f = new File("C:/Users/정동현/Desktop/images");		
+		String[] filelist = f.list();		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("filelist", filelist);
+		mv.setViewName("/naver/speechinput"); //image - mp3파일, language
+		//faceinput.jsp 구현
+		//filelist 모델값을 <a href="http://127.0.0.1:9091/ocr 호출하면서 파일이름 전달"> 파일이름 </a>
+		return mv;
+	}
+	
+	@RequestMapping(value="/speech", method=RequestMethod.GET)
+	public ModelAndView speech(String image, String lang) {//경로없이 파일명만 전달
+		String result = speechservice.test(image, lang); //stt서비스
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("speechResult", result); //네이버 stt 결과 json
+		mv.setViewName("/naver/speech");
+		return mv;
+	}
+	
+	@RequestMapping("/voiceinput")
+	public ModelAndView voiceinput() {
+		File f = new File("C:/Users/정동현/Desktop/images");		
+		String[] filelist = f.list();		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("filelist", filelist);
+		mv.setViewName("/naver/voiceinput"); //textfile, speaker		
+		return mv;
+	}
+	
+	@RequestMapping(value="/voice", method=RequestMethod.GET)
+	public ModelAndView voice(String image, String speaker) {//경로없이 파일명만 전달
+		//String result = voiceservice.test(image); //tts서비스
+		String result = voiceservice.test(image, speaker); //tts서비스
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("voiceResult", result); //네이버 tts 결과 mp3반환
+		mv.setViewName("/naver/voice");
 		return mv;
 	}
 }
