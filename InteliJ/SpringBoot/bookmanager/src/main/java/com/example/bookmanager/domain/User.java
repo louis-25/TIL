@@ -1,5 +1,6 @@
 package com.example.bookmanager.domain;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,7 +14,9 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Data
 public class User {
+    @NonNull
     private String name;
+    @NonNull
     private String email;
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;

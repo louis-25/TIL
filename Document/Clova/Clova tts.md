@@ -1,6 +1,6 @@
-# CLOVA Pose Estimation
+# CLOVA Voice
 
-이미지 속의 사람을 감지하고 몇명이 어떤 포즈를 취하고 있는지에 대한 좌표 정보를 얻을 수 있습니다.
+고품질 음성 합성 기술로 다양하고 자연스러운 목소리 제공
 
 <br>
 
@@ -19,26 +19,25 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class NaverController {
 	@Autowired
-	NaverPoseService poseservice; // 포즈 분석
+	NaverVoiceService voiceservice;
 	
-	@RequestMapping("/poseinput")
-	public ModelAndView poseinput() {
+	@RequestMapping("/voiceinput")
+	public ModelAndView voiceinput() {
 		File f = new File("C:/Users/정동현/Desktop/images");		
 		String[] filelist = f.list();		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("filelist", filelist);
-		mv.setViewName("/naver/poseinput");
-		//faceinput.jsp 구현
-		//filelist 모델값을 <a href="http://127.0.0.1:9091/ocr 호출하면서 파일이름 전달"> 파일이름 </a>
+		mv.setViewName("/naver/voiceinput"); //textfile, speaker		
 		return mv;
 	}
 	
-	@RequestMapping(value="/pose", method=RequestMethod.GET)
-	public ModelAndView pose(String image) {//경로없이 파일명만 전달
-		String result = poseservice.test(image); //포즈분석 서비스
+	@RequestMapping(value="/voice", method=RequestMethod.GET)
+	public ModelAndView voice(String image, String speaker) {//경로없이 파일명만 전달
+		//String result = voiceservice.test(image); //tts서비스
+		String result = voiceservice.test(image, speaker); //tts서비스
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("poseResult", result); //네이버 포즈 인식 결과 json
-		mv.setViewName("/naver/pose");
+		mv.addObject("voiceResult", result); //네이버 tts 결과 mp3반환
+		mv.setViewName("/naver/voice");
 		return mv;
 	}
 }
@@ -62,227 +61,196 @@ public interface NaverService {
 
 <br>
 
-### NaverPoseService.java
+### NaverVoiceService.java
 
 ```java
 package naver.cloud;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+//네이버 음성합성 Open API 예제
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
+/*
+ * 1. NaverService 상속 : String test(String) 오버라이딩 - 화자 mijin 기본값 설정
+ * 2. NaverController : voice 메소드 수정 - speaker 미선택시 voiceservice.test(""), 선택시 voiceservice.test("","")
+ * 
+ * */
+
 @Service
-public class NaverPoseService implements NaverService {
+public class NaverVoiceService implements NaverService{
 
 	@Override
-	public String test(String image) {
-		StringBuffer response = new StringBuffer();
-		StringBuffer reqStr = new StringBuffer();
+	public String test(String file) {
 		
-        String clientId = "yheadou32e";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "XbBNFTRczDq3nrUDPgyTQN4j4oaZjYEk71uGIAPj";//애플리케이션 클라이언트 시크릿값";
-		
-		try {
-			String paramName = "image"; // 파라미터명은 image로 지정
-			String imgFile = "C:/Users/정동현/Desktop/images/"+image; 
-			File uploadFile = new File(imgFile);
-			String apiURL = "https://naveropenapi.apigw.ntruss.com/vision-pose/v1/estimate"; // 사람 인식
-			URL url = new URL(apiURL);
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			con.setUseCaches(false);
-			con.setDoOutput(true);
-			con.setDoInput(true); // 서버 전송 데이터가 추가적으로 더 있다.
-			// multipart request
-			String boundary = "---" + System.currentTimeMillis() + "---";
-			con.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
-			con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
-			con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
-			OutputStream outputStream = con.getOutputStream();
-			PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"), true);
-			String LINE_FEED = "\r\n";
-			// file 추가
-			String fileName = uploadFile.getName();
-			writer.append("--" + boundary).append(LINE_FEED);
-			writer.append("Content-Disposition: form-data; name=\"" + paramName + "\"; filename=\"" + fileName + "\"").append(LINE_FEED);
-			writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(fileName)).append(LINE_FEED);
-			writer.append(LINE_FEED);
-			writer.flush();
-			FileInputStream inputStream = new FileInputStream(uploadFile);
-			byte[] buffer = new byte[4096];
-			int bytesRead = -1;
-			while ((bytesRead = inputStream.read(buffer)) != -1) {
-				outputStream.write(buffer, 0, bytesRead);
-			}
-			outputStream.flush();
-			inputStream.close();
-			writer.append(LINE_FEED).flush();
-			writer.append("--" + boundary + "--").append(LINE_FEED);
-			writer.close();
-
-			//=======================요청 보내기 (id, key, 이미지 파일 읽어서) ==================
-
-			// 응답 받기
-			BufferedReader br = null;
-			int responseCode = con.getResponseCode();
-			if (responseCode == 200) { // 정상 호출
-				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			}
-			else { // 오류 발생 (API 사이트에서 확인)
-				System.out.println("error!!!!!!! responseCode= " + responseCode);
-				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			}
-			String inputLine;
-			if (br != null) {
-				//StringBuffer response = new StringBuffer();
-				while ((inputLine = br.readLine()) != null) {
-					response.append(inputLine);
-				}
-				br.close();
-				System.out.println(response.toString());
-			}
-			else {
-				System.out.println("error !!!");
-			}
-		}
-		catch (Exception e) {
-			System.out.println(e);
-			System.out.println(((java.io.IOException)e).getMessage());
-		}
-		return response.toString();
+		return test(file, "nara");
 	}
+	public String test(String textfile, String speaker) {
+	 
+	 String returnfile = null;
+     String clientId = "yheadou32e";//애플리케이션 클라이언트 아이디값";
+     String clientSecret = "XbBNFTRczDq3nrUDPgyTQN4j4oaZjYEk71uGIAPj";//애플리케이션 클라이언트 시크릿값";
+     try {
+         String text = URLEncoder.encode("오홍홍홍", "UTF-8"); // 13자
+         text = "";
+         FileReader fr = new FileReader("C:/Users/정동현/Desktop/images/"+textfile);
+         BufferedReader inputbr = new BufferedReader(fr); //한줄씩 읽어오게 버퍼에저장
+         while(true) {
+        	 String line = inputbr.readLine(); //한줄씩 읽어오기
+        	 if(line==null) break;        	 
+    		 text += line +"\n";
+         }
+         System.out.println(text);
+         text = URLEncoder.encode(text, "UTF-8");
+         System.out.println(text);
+         
+         String apiURL = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts";
+         URL url = new URL(apiURL);
+         HttpURLConnection con = (HttpURLConnection)url.openConnection();
+         con.setRequestMethod("POST");
+         con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
+         con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+         // post request
+         String postParams = 
+        		 "speaker="+speaker+"&volume=0&speed=0&pitch=0&emotion=0&format=mp3&text=" + text;
+         con.setDoOutput(true);
+         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+         wr.writeBytes(postParams);
+         wr.flush();
+         wr.close();
+         int responseCode = con.getResponseCode();
+         BufferedReader br;
+         System.out.println(responseCode);
+         if(responseCode==200) { // 정상 호출
+             InputStream is = con.getInputStream();
+             int read = 0;
+             byte[] bytes = new byte[1024];
+             // 랜덤한 이름으로 mp3 파일 생성
+             String tempname = Long.valueOf(new Date().getTime()).toString();
+             File f = new File("C:/Users/정동현/Desktop/images/"+tempname + ".mp3");
+             returnfile = tempname + ".mp3";
+             f.createNewFile();
+             OutputStream outputStream = new FileOutputStream(f);
+             while ((read =is.read(bytes)) != -1) {
+                 outputStream.write(bytes, 0, read);
+             }
+             is.close();
+         } else {  // 오류 발생
+             br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+             String inputLine;
+             StringBuffer response = new StringBuffer();
+             while ((inputLine = br.readLine()) != null) {
+                 response.append(inputLine);
+             }
+             br.close();
+             System.out.println(response.toString());
+         }
+     } catch (Exception e) {
+         System.out.println(e);
+     }
+     return returnfile;
+ }
 
-	@Override
-	public String test() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+@Override
+public String test() {
+	// TODO Auto-generated method stub
+	return null;
 }
+
+
+}
+
 ```
 
 <br>
 
-### poseinput.jsp
+### voiceinput.jsp
 
 ```java
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="resources/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
-});//ready end
+   
+});
 </script>
 </head>
 <body>
+<h1>tts 서비스를 위한 파일 선택</h1>
 <%
-	String[] filelist = (String[])request.getAttribute("filelist");
-	for(String file : filelist) {
-		String [] file_split = file.split("[.]");
-		String ext = file_split[file_split.length - 1];
-		if(!(ext.equals("mp3") || ext.equals("text"))) {
-		
+String [] speakers = {"mijin","jinho","clara","matt","shinji","meimei","liangliang","jose","carmen"};
+String [] informs = {"미진 : 한국어,여성 음색","진호 : 한국어, 남성 음색","clara : 클라라 : 영어, 여성 음색",
+      "matt : 매트 : 영어, 남성 음색"," 신지: 일본어, 남성 음색","메이메이 : 중국어, 여성 음색","리앙리앙 : 중국어, 남성 음색",
+      "호세 : 스페인어, 남성 음색","카르멘 : 스페인어, 여성 음색"};
 %>
-			<a href="/pose?image=<%=file%>"><%=file%>(얼굴인식)</a> <img src="/faceimages/<%=file%>" width=100 height=100><br>
-<%
-		}
-	}
+
+<form action="/voice">
+   음색선택 :
+   <%for(int i=0;i<speakers.length;i++){ %>
+      <input type=radio name="speaker" value="<%=speakers[i] %>"> <%=informs[i] %>
+   <%
+   }
+   %>
+   <br>
+   <select name="image">
+      <%
+         String[] filelist = (String[])request.getAttribute("filelist");
+         for(String file : filelist){
+            String[] f_split = file.split("[.]");
+            String ext = f_split[f_split.length-1];
+            if(ext.equals("txt")){
+      %>
+         <option value="<%=file%>"> <%=file %></option>
+      <%
+      }
+}
 %>
+   </select>
+   <input type="submit" value="음성으로변환요청">
+</form>
+
 </body>
 </html>
 ```
 
 <br>
 
-### pose.jsp
+### voice.jsp
 
 사람의 관절을 18개로 나누어 점과 선으로 표현해보자
 
 ```java
-<%@page import="java.math.BigDecimal"%>
-<%@page import="org.json.JSONArray"%>
-<%@ page import="org.json.JSONObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%	String image = request.getParameter("image"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="jquery-3.2.1.min.js"></script>
 <script>
-window.onload = function() {
-	var bodynames = ["코", "목", "오른쪽 어깨", "오른쪽 팔굼치", "오른쪽 손목", "왼쪽 어깨", "왼쪽 팔굼치", "왼쪽 손목", "오른쪽 엉덩이", "오른쪽 무릎","오른쪽 발목", "왼쪽 엉덩이", "왼쪽 무릎", "왼쪽 발목", "오른쪽 눈", "왼쪽 눈", "오른쪽 귀", "왼쪽 귀", "오른쪽 귀"];
-	var samplecanvas = document.getElementById("samplecanvas");
-	var resultdiv = document.getElementById("resultdiv");
-	var samplecontext = samplecanvas.getContext("2d");
+$(document).ready(function(){
 	
-	samplecontext.fillStyle = "red";
-	samplecontext.lineWidth = 5;
-	samplecontext.strokeStyle = "green";
-	
-	var image = new Image();
-	image.src = "/faceimages/<%=image%>";
-	image.onload = function() {
-		samplecontext.drawImage(image, 0, 0, image.width, image.height);
-<%
-		String poseResult = (String)request.getAttribute("poseResult");
-%>
-		var json = JSON.parse('<%=poseResult%>');
-		for(var i in json.predictions) {
-			for(var ii in json.predictions[i]) {
-				var body = json.predictions[i][ii];
-				resultdiv.innerHTML += ii + " 신체 부위 : x = " + body.x + " y = " + body.y + "<br>";
-				samplecontext.fillRect(body.x * image.width, body.y * image.height, 5, 5);
-				
-				// 전체 신체 부위 이름 출력
-				// samplecontext.fillText(bodynames[ii], body.x * image.width + 5, body.y * image.height + 5);
-				
-				// 왼쪽 손목, 오른쪽 손목만 이름 출력
-				if(bodynames[ii].indexOf("오른쪽 손목") >= 0 || bodynames[ii].indexOf("왼쪽 손목") >= 0 ) {
-					samplecontext.fillText(bodynames[ii], body.x * image.width + 5, body.y * image.height + 5);
-				}
-				if(bodynames[ii].indexOf("오른쪽 손목") >= 0 ) {
-					var rightx = body.x * image.width;
-					var righty = body.y * image.height;
-				}
-				if(bodynames[ii].indexOf("왼쪽 손목") >= 0 ) {
-					var leftx = body.x * image.width;
-					var lefty = body.y * image.height;
-				}
-				// 양쪽 손목 서로 선 연결
-				samplecontext.beginPath();
-				samplecontext.moveTo(leftx, lefty);
-				samplecontext.lineTo(rightx, righty);
-				samplecontext.closePath();
-				samplecontext.stroke();
-				
-			}
-		}
-	} // image onload end
-} // window onload end
+});
 </script>
 </head>
 <body>
-<%=request.getAttribute("poseResult") %>
-<div id="resultdiv"></div>
-<h1> 이미지 전체 캔버스 </h1>
-<canvas id="samplecanvas" width=900 height=900 style="border : solid 2px pink"></canvas>
+<%=request.getAttribute("voiceResult") %>
+<audio src="/faceimages/<%=request.getAttribute("voiceResult") %>"
+controls="controls">
+</audio>
 </body>
 </html>
 ```

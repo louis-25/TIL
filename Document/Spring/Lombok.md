@@ -1,6 +1,6 @@
 # Lombok
 
-Lombok을 사용하기 위해서 settings.gradle에 Lombok 의존성을 추가해줘야함
+Lombok을 사용하기 위해서 build.gradle에 Lombok 의존성을 추가해줘야함
 
 Lombok은 어노테이션을 활용하여 소스코드를 간단하게 만들어준다
 
