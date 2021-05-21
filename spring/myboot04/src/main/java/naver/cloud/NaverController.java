@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import naver.chatbot.NaverChatbotService;
+
 @Controller
 public class NaverController {
 	@Autowired
@@ -23,7 +25,7 @@ public class NaverController {
 	NaverSpeechService speechservice;
 	
 	@Autowired
-	NaverVoiceService voiceservice;
+	NaverVoiceService voiceservice;	
 	
 	@RequestMapping("/faceinput")
 	public ModelAndView faceinput() {

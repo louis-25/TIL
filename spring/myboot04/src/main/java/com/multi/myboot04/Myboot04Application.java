@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import naver.chatbot.NaverChatbotController;
 import naver.cloud.NaverController;
 import spring_mybatis.EmpController;
 import spring_mybatis.EmpDAO;
@@ -13,6 +14,7 @@ import spring_mybatis.EmpDAO;
 @ComponentScan //(basePackageClasses = Myboot01Application.class) 생략해도 기본페키지 (기본패키지 어노테이션 사용하기위해)
 @ComponentScan(basePackageClasses = EmpController.class) //spring_mybatis 패키지안에있는 어노테이션도 사용하겠다
 @ComponentScan(basePackageClasses = NaverController.class)
+@ComponentScan(basePackageClasses = NaverChatbotController.class)
 @MapperScan(basePackageClasses = EmpDAO.class)
 public class Myboot04Application {
 
