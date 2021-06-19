@@ -27,7 +27,7 @@ function send(){
 		//요청
 		url : "/chatbot",
 		type : "post",
-		data : {"message" : inputMessage},
+		data : {"message" : inputMessage}, //처음 입장시 질문이 없으므로 웰컴메세지 출력
 		//응답
 		dataType : 'json',
 		success : function(a){ //a는 서버에서 받아온 응답결과
@@ -37,10 +37,10 @@ function send(){
 		for(var b in bubbles){			
 			if(bubbles[b].type == 'text'){ //image button template
 				$("#messageWindow").append("chatbot : "+bubbles[b].data.description+"<br>");
-				$.ajax({
+				$.ajax({ //텍스트를 음성으로 변환 (TTS)
 					url: '/chatbotvoice',
 					type:'get',
-					data:{"text": bubbles[b].data.description,"speaker":"shinji"},
+					data:{"text": bubbles[b].data.description,"speaker":"nara"},
 					success: function(mp3){
 						//alert(mp3);
 						//$("#voice").attr('src', "/voice/"+mp3);
@@ -52,9 +52,34 @@ function send(){
 				if(bubbles[b].data.url != null) {
 					$("#messageWindow").append
 					("<a href='"+bubbles[b].data.url+"'>"+bubbles[b].data.url+"</a><br>");
+				}//url이 있는가
+			}//text가 있는가
+			//이미지나 멀티링크 답변
+			else if(bubbles[b].type == 'template'){
+				//이미지 - 이미지로 출력
+				if(bubbles[b].data.cover.type == 'image'){
+					$("#messageWindow").append
+					("<img src='"+bubbles[b].data.cover.data.imageUrl+"'><br><br>");
 				}
+				//멀티링크 - 텍스트로 출력
+				else if(bubbles[b].data.cover.type == 'text'){
+					$("#messageWindow").append
+					("<div><span style=background-color:#ffffff;>chatbot : "
+					+bubbles[b].data.cover.data.description+"</span></div><br>");
+				}								
+				//공통
+				for(var ct in bubbles[b].data.contentTable){
+					var ctdata = bubbles[b].data.contentTable[ct];//링크 1개나 버튼 1개
+					for(var index in ctdata){
+						var linkurl = ctdata[index].data.data.action.data.url
+						var linktitle = ctdata[index].data.title;
+					}
+					$("#messageWindow").append
+					("<a href='" + linkurl + "'>"+ linktitle +"</a><br>");
+					
+				}//공통 for end
 			}
-		}		
+		}//for end		
 			
 		}
 	});//ajax end

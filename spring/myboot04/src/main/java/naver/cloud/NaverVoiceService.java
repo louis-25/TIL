@@ -29,7 +29,7 @@ public class NaverVoiceService implements NaverService{
      String clientId = "yheadou32e";//애플리케이션 클라이언트 아이디값";
      String clientSecret = "XbBNFTRczDq3nrUDPgyTQN4j4oaZjYEk71uGIAPj";//애플리케이션 클라이언트 시크릿값";
      try {
-         String text = URLEncoder.encode("오홍홍홍", "UTF-8"); // 13자
+         String text = URLEncoder.encode("안녕하세요? 저는 AI Platform 기반의 지능형 서비스 개발 프로젝트 D반 정동현입니다. 이것은 과정 실습평가 샘플 음성입니다.", "UTF-8"); // 13자
          text = "";
          FileReader fr = new FileReader("C:/Users/정동현/Desktop/images/"+textfile);
          BufferedReader inputbr = new BufferedReader(fr); //한줄씩 읽어오게 버퍼에저장

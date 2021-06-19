@@ -32,7 +32,7 @@ String[] langnames = {"한국어", "영어", "일본어", "중국어"};
 	for(String file : filelist) { // *.mp3만 보여주자
 		String[] f_split = file.split("[.]"); //.을 인식시키려면 [] 안에 넣어줘야한다
 		String ext = f_split[f_split.length-1];
-		if(ext.equals("mp3")){
+		if(ext.equals("mp3") || ext.equals("wav")){
 	%>
 		<option value="<%=file%>"><%=file %></option>	 	
 	<%
